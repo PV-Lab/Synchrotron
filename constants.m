@@ -1,0 +1,93 @@
+%constants
+
+    pixelSize = 0.22; %um
+    
+    %Fe edge attenuation lengths
+    %l_6404 = 36.526; %um
+    %l_7150 = 50.238; %um
+    
+    %Cr edge attenuation lengths
+    l_10000= 133.707; %um
+    l_5414 = 22.59; %um
+    %Wafer thickness
+    t = 180; %um
+    
+    
+    theta0 = 5*pi/12; %Guess 75 degrees for GB angle
+
+    %Detector Geometry
+    alphaAngle  = 12*pi/180;   %incident angle (15 degrees)
+    betaAngle   = 78*pi/180; %exiting angle  (75 degress)
+    
+    %Calculate information depth
+    infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_5414));
+    
+    
+        
+%     %beta-FeSi2 lattice parameters from Dusausoy et al.
+% 
+%     a = 9.863e-8; %cm
+%     b = 7.791e-8;  
+%     c = 7.833e-8;
+%     Z = 16;
+% 
+%     V_FeSi2_unitcell = a*b*c/Z; %cm3, volume of one primitive cell of beta-FeSi2
+% 
+%     wtFe     = 55.845; %g/mol
+%     wtFeSi2  = 112.016; %g/mol
+     N_A      = 6.022e23; %atoms/mol
+%     
+%     convertArealToVolConc = 1e-6*N_A/wtFe/infoD*1e4;
+    
+    %CrSi2 lattice parameters
+    
+    Cr_a = 4.43e-8; %cm
+    Cr_c = 6.37e-8; %cm
+    Cr_Z = 3; %Cr atoms in unit cell
+    
+    V_CrSi2_unitcell = (Cr_a^2)*Cr_c*sin(60*2*pi/360)/Cr_Z; %cm^3, hexagonal
+    
+    wtCr = 51.9961; %g/mol
+    wtSi = 28.0855; %g/mol
+    wtCrSi2 = wtCr+(2*wtSi); %g/mol
+    
+    covertArealToVolConc_Cr = (1e-6)*N_A/wtCr/infoD*1e4; 
+    
+    %sensitivity limit
+    spotSize = 0.2; %um diameter
+    spotArea = pi/4*spotSize^2;
+    
+    detLimit     = 1e14; %atoms/cm2/sec
+    
+    detLimitUm   = 1e14*1e-4*1e-4; %atoms/um2;
+    detLimitAtoms_generic = spotArea*detLimitUm;
+    detLimitAtoms = detLimitAtoms_generic;
+    
+    
+    
+%     %mdl_7150
+%     mdl_7150_attogram = 5; %these are for 2010c1
+%     mdl_7150_atoms = mdl_7150_attogram*1e-18/wtFe*N_A;
+%     mdl_10000_attogram = 15.6; %these are for 2010c1  %18.3 for 2010c3, 6.6 for 2011c1...the difference being...?
+%     mdl_10000_atoms = mdl_10000_attogram*1e-18/wtFe*N_A;
+%     if exist('map','var')
+%         if ~isempty(strfind(map.title,'Fe53bPDG')) || ~isempty(strfind(map.title,'Fe200bPDG'))
+%             detLimitAtoms = mdl_10000_atoms;
+%             fprintf('Using MDL at 10 keV: %d \n',detLimitAtoms);
+%         elseif ~isempty(strfind(map.title,'Fe53')) || ~isempty(strfind(map.title,'Fe200'))
+%             detLimitAtoms = mdl_7150_atoms;
+%             fprintf('Using MDL at Fe edge: %d, \n',detLimitAtoms);
+%            
+%         else
+%              detLimitAtoms = detLimitAtoms_generic;
+%             fprintf('Assuming MDL generic 1e14 atoms/cm^2:%d \n', detLimitAtoms);
+%         end
+%     else
+%         detLimitAtoms = detLimitAtoms_generic;
+%         fprintf('Assuming generic MDL 1e14 atoms/cm^2:%d \n', detLimitAtoms);
+%     end
+   
+    
+    detLimitRadius= ((3/4/pi)*detLimitAtoms*V_CrSi2_unitcell)^(1/3)/1e-7; %cm
+      
+      
