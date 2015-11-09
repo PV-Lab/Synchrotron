@@ -12,8 +12,8 @@
 % Cr188, gettered by standard process 845C, 2014-03 Synchrotron Run,
 % 2idd_0065.h5, scan 65, 2idd_0071.h5, scan 71
      
-Samples = {'Cr187G_1','Cr187G_2','Cr188G_1','Cr188G_2','Cr187G_3'}; %Exclude the last 189 scan because no particles were found
-hiResScans = {'0080','0082','0065','0071','0088'}; 
+Samples = {'Cr187','Cr189'}; %Exclude the last 189 scan because no particles were found
+hiResScans = {'0076','0089'}; 
 % Samples = {'Cr187G_1','Cr187G_2','Cr187G_3'}; %Exclude the last 189 scan because no particles were found
 % hiResScans = {'0080','0082','0088'}; 
 % Samples = {'Cr188G_1','Cr188G_2'}; %Exclude the last 189 scan because no particles were found
