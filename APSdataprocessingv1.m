@@ -12,9 +12,9 @@
 %%%%
 
 %% Choose which samples to process and which channels to load
-    sampleInfoCr200;
+    sampleInfoEpi2014c1;
 
-    channelsToLoad = {'Cr','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
+    channelsToLoad = {'Ni','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
     
     %%
 if ~exist('fromMaps','var')
