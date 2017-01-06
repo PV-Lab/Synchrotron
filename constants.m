@@ -32,11 +32,15 @@ SOFTWARE.
     %l_7150 = 50.238; %um
     
     %Cr edge attenuation lengths
-    l_10000= 133.707; %um
-    l_5414 = 22.59; %um
+%     l_10000= 133.707; %um
+%     l_5414 = 22.59; %um
     %Wafer thickness
-    t = 180; %um
+    t = 170; %um
     
+    %Cu edge attenuation lengths
+    l_9000 = 98.1814; %um
+    l_8048 = 70.8421; %Cu
+    l_7478 = 57.2171; %Ni
     
     theta0 = 5*pi/12; %Guess 75 degrees for GB angle
 
@@ -45,7 +49,9 @@ SOFTWARE.
     betaAngle   = 78*pi/180; %exiting angle  (75 degress)
     
     %Calculate information depth
-    infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_5414));
+%     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_5414));
+    infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_8048));
+%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_7478));
     
     
         
@@ -66,17 +72,33 @@ SOFTWARE.
     
     %CrSi2 lattice parameters
     
-    Cr_a = 4.43e-8; %cm
-    Cr_c = 6.37e-8; %cm
-    Cr_Z = 3; %Cr atoms in unit cell
+%     Cr_a = 4.43e-8; %cm
+%     Cr_c = 6.37e-8; %cm
+%     Cr_Z = 3; %Cr atoms in unit cell
+%     
+%     V_CrSi2_unitcell = (Cr_a^2)*Cr_c*sin(60*2*pi/360)/Cr_Z; %cm^3, hexagonal
+%     
+%     wtCr = 51.9961; %g/mol
+%     wtSi = 28.0855; %g/mol
+%     wtCrSi2 = wtCr+(2*wtSi); %g/mol
+%     
+%     covertArealToVolConc_Cr = (1e-6)*N_A/wtCr/infoD*1e4; 
     
-    V_CrSi2_unitcell = (Cr_a^2)*Cr_c*sin(60*2*pi/360)/Cr_Z; %cm^3, hexagonal
+    %CuSi? lattice parameters
+    %Note - these are not correct as of 1/6/17!
+    Cu_a = 4.43e-8; %cm
+    Cu_c = 6.37e-8; %cm
+    Cu_Z = 3; %Cr atoms in unit cell
     
-    wtCr = 51.9961; %g/mol
+    V_CuSi2_unitcell = (Cu_a^2)*Cu_c*sin(60*2*pi/360)/Cu_Z; %cm^3, hexagonal
+    
+    wtCu = 63.546; %g/mol
+%     wtCu = 58.6934; %g/mol, this is actually Ni
     wtSi = 28.0855; %g/mol
-    wtCrSi2 = wtCr+(2*wtSi); %g/mol
+    wtCuSi2 = wtCu+(2*wtSi); %g/mol
     
-    covertArealToVolConc_Cr = (1e-6)*N_A/wtCr/infoD*1e4; 
+    covertArealToVolConc_Cu = (1e-6)*N_A/wtCu/infoD*1e4; 
+    
     
     %sensitivity limit
     spotSize = 0.2; %um diameter
@@ -113,6 +135,6 @@ SOFTWARE.
 %     end
    
     
-    detLimitRadius= ((3/4/pi)*detLimitAtoms*V_CrSi2_unitcell)^(1/3)/1e-7; %cm
+    detLimitRadius= ((3/4/pi)*detLimitAtoms*V_CuSi2_unitcell)^(1/3)/1e-7; %cm
       
       

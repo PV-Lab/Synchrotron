@@ -45,7 +45,7 @@ SOFTWARE.
         if strcmp(options.scaling,'on')
             if particleDist(j) > 0  %choose only particles above the grain boundary to scale
            
-                scaleFactor(j) = exp(-particleDepth(j)/l_10000/cos(alphaAngle))*exp(-particleDepth(j)/l_6404/cos(betaAngle));
+                scaleFactor(j) = exp(-particleDepth(j)/l_9000/cos(alphaAngle))*exp(-particleDepth(j)/l_8048/cos(betaAngle));
             else
                 scaleFactor(j) = 1;
                 if j == 1, disp('Not scaling any counts'); end;

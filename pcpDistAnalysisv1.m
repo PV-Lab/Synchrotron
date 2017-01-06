@@ -52,7 +52,7 @@ global pon xLocation yLocation
 
 % define defaults at the beginning of the code so that you don't need to scroll
 % way down in case you want to change something or if the help is incomplete
-options = struct('channel','Ni','scaling','on','background','removed','fitorder','1','manualgbline','n','plots','on','plotScale','linear'); %,'secondparameter',magic(3));
+options = struct('channel','Cu','scaling','on','background','removed','fitorder','1','manualgbline','n','plots','on','plotScale','linear'); %,'secondparameter',magic(3));
 
 %scaling - on/off toggles the scaling of cts with depth from GB
 %backgrond - 
@@ -98,9 +98,9 @@ end
 elasticCounts = map.s_e.counts;
 
 % AEM choose the right element channel
-if strcmp(options.channel,'Cr')
-    map = map.Cr;
-elseif strcmp(options.channel,'only Cr') %if only Cr has been imported and fitted
+if strcmp(options.channel,'Ni')
+    map = map.Ni;
+elseif strcmp(options.channel,'only Ni') %if only Cr has been imported and fitted
     map = map;
 else
     map = map.(options.channel);
@@ -132,7 +132,7 @@ N = str2double(options.fitorder); %linear fit
     
     %%  Determine the scattering values in the bulk from elastic channel
     
-    elasticBulkLevels;
+%     elasticBulkLevels;
         
 %% Intro Plots
 
@@ -170,7 +170,7 @@ N = str2double(options.fitorder); %linear fit
     else
         disp('Skipping GB angle fit, because no scaling...');
     end
-%% ------------------------  Cr PARTICLE ISOLATION -----------------------
+%% ------------------------  Cru PARTICLE ISOLATION -----------------------
 
     detectParticles10c1; 
     %detects particles and if plots on, plots bounding boxes on Cr Map and creates new chromium detected map
@@ -228,21 +228,22 @@ N = str2double(options.fitorder); %linear fit
         %particleData = [particleDist', particleDepth', map.particleRadiusAdj' ,map.particleN_Cr_atomsAdj', map.lineDensityPcpsInvUm*ones(Npcps,1)];
         
         %particleData = [xLocation',yLocation',particleDist', particleDepth', map.particleRadiusAdj' ,map.particleN_Cr_atomsAdj', map.lineDensityPcpsInvUm*ones(Npcps,1)];
-        particleData = [xLocation',yLocation',particleDist', particleDepth', map.particleRadiusAdj' ,map.particleN_Cr_atomsAdj'];
+%         particleData = [xLocation',yLocation',particleDist', particleDepth', map.particleRadiusAdj' ,map.particleN_Cu_atomsAdj'];
+        particleData = [xLocation',yLocation', map.particleRadius' ,map.particleN_Cu_atoms'];
         table = figure('Name','Calculated Particle Properties');
         pos   = get(gcf, 'Position'); width = pos(3); height= pos(4);
         %cnames = {'Dist from GB (um)','Depth (um)', 'Radius (nm)', 'N_Cr_atoms', 'Pcp Density'};
 
         %cnames = {'X location','Y location','Dist from GB (um)','Depth (um)', 'Radius (nm)', 'N_Cr_atoms', 'Pcp Density'};
-        cnames = {'X location','Y location','Dist from GB (um)','Depth (um)', 'Radius (nm)', 'N_Cr_atoms'};
+        cnames = {'X location','Y location','Dist from GB (um)','Depth (um)', 'Radius (nm)', 'N_Cu_atoms'};
         t = uitable('Parent',table,'Data',particleData,'ColumnName',cnames,'Position', [0 0 width height]);
 
         radiusDepth = figure('Name', 'Pcp Radius vs Particle Depth'); 
-        plot(particleDepth',map.particleRadiusAdj','o')
+%         plot(particleDepth',map.particleRadiusAdj','o')
         hold on;
-        for i = 1:length(particleDepth)
-            text(particleDepth(i),map.particleRadiusAdj(i),num2str(i),'BackgroundColor','w');
-        end
+%         for i = 1:length(particleDepth)
+%             text(particleDepth(i),map.particleRadiusAdj(i),num2str(i),'BackgroundColor','w');
+%         end
 
 
         binSize = 2*iqr(map.particleRadius)/length(map.particleRadius)^(1/3);  %Freedman-Diaconis
@@ -263,12 +264,12 @@ N = str2double(options.fitorder); %linear fit
 
         %Plot the grain boundary line on all pertinent figures
        if strcmp(options.scaling, 'on')
-        figure(scaledCr);   hold on;  plot(domain, GBline,'g'); shading flat;
+        figure(scaledCu);   hold on;  plot(domain, GBline,'g'); shading flat;
         figure(GBregion);   hold on;  plot(domain, flipudGBline,'g'); plot(domain, flipudGBstart,'co');
     %     figure(pcps);       hold on;  plot(domain, flipudGBline,'g');
 
 
-        figure(CrMap);      hold on;  plot(domain, GBline,'g'); shading flat; axis equal;
+        figure(CuMap);      hold on;  plot(domain, GBline,'g'); shading flat; axis equal;
        end
 %        figure(rawMap);
         

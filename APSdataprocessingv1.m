@@ -37,9 +37,9 @@ SOFTWARE.
 %%%%
 
 %% Choose which samples to process and which channels to load
-    sampleInfoCr200;
+    sampleInfoSERISCuNi;
 
-    channelsToLoad = {'Cr','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
+    channelsToLoad = {'Cu','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
     
     %%
 if ~exist('fromMaps','var')
@@ -130,7 +130,7 @@ for u = 1:q
         %points
         %subtracted - subtracts the noiseMean from the data
         
-    quantOptions = struct('channel','Cr','scaling','off','background',bkgdAnalysis,'fitorder','3','manualgbline','n','plots','on','plotScale','linear') ;
+    quantOptions = struct('channel','Cu','scaling','off','background',bkgdAnalysis,'fitorder','3','manualgbline','n','plots','on','plotScale','linear') ;
     %%%%%%%%%%%%%%%%   
             
             quant.(sampleName) = pcpDistAnalysisv1(fitted.(sampleName), quantOptions);
@@ -168,7 +168,7 @@ noiseFloorR = zeros(1, nSamples);
 
 for i = 1:nSamples
     
-    Pcps{i} = quant.(sampleNames{i}).particleN_Cr_atomsAdj;
+    Pcps{i} = quant.(sampleNames{i}).particleN_Cu_atomsAdj;
     noiseFloorAtoms(i) = quant.(sampleNames{i}).noiseLimitAtoms;
     noiseFloorR(i) = quant.(sampleNames{i}).noiseLimitR;
     noiseMeanAtoms(i) = quant.(sampleNames{i}).noiseMeanAtoms;
@@ -246,9 +246,9 @@ end
 atomsYLim = [2e4 1e8];
 
 set(gca,'YScale','Log','YLim',atomsYLim,'XLim',[-increment increment*nSamples]);
-ylabel('Precipitated Chromium Atoms');
+ylabel('Precipitated Copper Atoms');
 xlabel('Sample');
-title(sprintf('Precipitated Chromium Distribution -- Background %s %s Sigma', bkgdAnalysis, num2str(nSigma)));
+title(sprintf('Precipitated Copper Distribution -- Background %s %s Sigma', bkgdAnalysis, num2str(nSigma)));
 
 constants;
 plot(get(gca,'XLim'),[detLimitAtoms detLimitAtoms],'k:');
