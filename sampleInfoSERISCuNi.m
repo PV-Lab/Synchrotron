@@ -42,6 +42,8 @@ SOFTWARE.
 % Samples = {'GB','Grain'};
 % hiResScans = {'0206','0213'};
 
+Samples = {'PS1'}; 
+hiResScans = {'0102'}; 
 
 channels = {'Si','Cu','Ni','s_e'};
 
