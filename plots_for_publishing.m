@@ -31,6 +31,7 @@ data_Cu = xlsread(filename,'Cu');
 data_Ni = xlsread(filename,'Ni'); 
 %scan numbers in order of our analysis
 scans = [189,190,204,205,206,213,102];
+circle_parts = 'N'; 
 
 %Make plots for publication. 
 radius = 0.00075; 
@@ -108,7 +109,7 @@ elastic_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filt
 
 %Cu first
 % logged = log(mapSAL1_1_Cu.counts);
-hFig=figure;
+Cu=figure;
 % image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,logged,'CDataMapping','scaled');
 image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,mapSAL1_1_Cu.counts,'CDataMapping','scaled');
 hold all; 
@@ -125,7 +126,7 @@ axis off;
 
 %Ni next
 % logged = log(mapSAL1_1_Ni.counts);
-hFig=figure;
+Ni=figure;
 % image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,logged,'CDataMapping','scaled');
 image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,mapSAL1_1_Ni.counts,'CDataMapping','scaled');
 hold all; 
@@ -159,6 +160,23 @@ axis off;
 index_Cu = find(data_Cu(:,1)==scans(1));
 x_Cu = data_Cu(index_Cu,2);
 y_Cu = data_Cu(index_Cu,3);
+if strcmp(circle_parts,'Y')==1
+    %Plot the particles on top of the XRF image
+    figure(Cu); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Cu)
+        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
 %Make the new thresholded image
 SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1)); 
@@ -166,6 +184,21 @@ SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1));
 index_Ni = find(data_Ni(:,1)==scans(1));
 x_Ni = data_Ni(index_Ni,2);
 y_Ni = data_Ni(index_Ni,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Ni); 
+    for i = 1:length(x_Ni)
+        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
 %Make the new thresholded image
 SAL1_1_Ni = imbinarize(mapSAL1_1_Ni.counts,threshold_Ni(1)); 
@@ -174,10 +207,26 @@ image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,SAL1_1_Cu,'CDataMapping','scaled')
 Ni_thresh = figure; 
 image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,SAL1_1_Ni,'CDataMapping','scaled');
 
+
 %Repeat the above for the second scan on this sample
 index_Cu = find(data_Cu(:,1)==scans(2));
 x_Cu = data_Cu(index_Cu,2);
 y_Cu = data_Cu(index_Cu,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Cu); 
+    for i = 1:length(x_Cu)
+        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
 %Make the new thresholded image
 SAL1_2_Cu = imbinarize(mapSAL1_2_Cu.counts,threshold_Cu(1)); 
@@ -185,6 +234,21 @@ SAL1_2_Cu = imbinarize(mapSAL1_2_Cu.counts,threshold_Cu(1));
 index_Ni = find(data_Ni(:,1)==scans(2));
 x_Ni = data_Ni(index_Ni,2);
 y_Ni = data_Ni(index_Ni,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Ni); 
+    for i = 1:length(x_Ni)
+        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
 %Make the new thresholded image
 SAL1_2_Ni = imbinarize(mapSAL1_2_Ni.counts,threshold_Ni(1)); 
@@ -200,7 +264,7 @@ axis('image');
 
 %Cu first
 % logged = log(mapSAH1_1_Cu.counts);
-hFig=figure;
+Cu=figure;
 % image(mapSAH1_1_Cu.xValue,mapSAH1_1_Cu.yValue,logged,'CDataMapping','scaled');
 image(mapSAH1_1_Cu.xValue,mapSAH1_1_Cu.yValue,mapSAH1_1_Cu.counts,'CDataMapping','scaled');
 hold all; 
@@ -217,7 +281,7 @@ axis off;
 
 %Ni next
 % logged = log(mapSAH1_1_Ni.counts);
-hFig=figure;
+Ni=figure;
 % image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,logged,'CDataMapping','scaled');
 image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,mapSAH1_1_Ni.counts,'CDataMapping','scaled');
 hold all; 
@@ -253,6 +317,22 @@ axis off;
 index_Cu = find(data_Cu(:,1)==scans(3));
 x_Cu = data_Cu(index_Cu,2);
 y_Cu = data_Cu(index_Cu,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Cu); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Cu)
+        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
 %Make the new thresholded image
 SAH1_1_Cu = imbinarize(mapSAH1_1_Cu.counts,threshold_Cu(1)); 
@@ -260,6 +340,21 @@ SAH1_1_Cu = imbinarize(mapSAH1_1_Cu.counts,threshold_Cu(1));
 index_Ni = find(data_Ni(:,1)==scans(3));
 x_Ni = data_Ni(index_Ni,2);
 y_Ni = data_Ni(index_Ni,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Ni); 
+    for i = 1:length(x_Ni)
+        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
 %Make the new thresholded image
 SAH1_1_Ni = imbinarize(mapSAH1_1_Ni.counts,threshold_Ni(1)); 
@@ -272,6 +367,22 @@ image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,SAH1_1_Ni,'CDataMapping','scaled')
 index_Cu = find(data_Cu(:,1)==scans(4));
 x_Cu = data_Cu(index_Cu,2);
 y_Cu = data_Cu(index_Cu,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Cu); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Cu)
+        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
 %Make the new thresholded image
 SAH1_2_Cu = imbinarize(mapSAH1_2_Cu.counts,threshold_Cu(1)); 
@@ -279,6 +390,21 @@ SAH1_2_Cu = imbinarize(mapSAH1_2_Cu.counts,threshold_Cu(1));
 index_Ni = find(data_Ni(:,1)==scans(4));
 x_Ni = data_Ni(index_Ni,2);
 y_Ni = data_Ni(index_Ni,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Ni); 
+    for i = 1:length(x_Ni)
+        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
 %Make the new thresholded image
 SAH1_2_Ni = imbinarize(mapSAH1_2_Ni.counts,threshold_Ni(1)); 
@@ -294,7 +420,7 @@ axis('image');
 
 %Cu first
 % logged = log(mapS1_1_Cu.counts);
-hFig=figure;
+Cu=figure;
 % image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,logged,'CDataMapping','scaled');
 image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,mapS1_1_Cu.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
@@ -319,7 +445,7 @@ axis off;
 
 %Ni next
 % logged = log(mapS1_1_Ni.counts);
-hFig=figure;
+Ni=figure;
 % image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,logged,'CDataMapping','scaled');
 image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,mapS1_1_Ni.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
@@ -396,6 +522,22 @@ axis off;
 index_Cu = find(data_Cu(:,1)==scans(5));
 x_Cu = data_Cu(index_Cu,2);
 y_Cu = data_Cu(index_Cu,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Cu); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Cu)
+        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
 %Make the new thresholded image
 S1_1_Cu = imbinarize(mapS1_1_Cu.counts,threshold_Cu(1)); 
@@ -403,6 +545,21 @@ S1_1_Cu = imbinarize(mapS1_1_Cu.counts,threshold_Cu(1));
 index_Ni = find(data_Ni(:,1)==scans(5));
 x_Ni = data_Ni(index_Ni,2);
 y_Ni = data_Ni(index_Ni,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Ni); 
+    for i = 1:length(x_Ni)
+        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
 %Make the new thresholded image
 S1_1_Ni = imbinarize(mapS1_1_Ni.counts,threshold_Ni(1)); 
@@ -417,7 +574,7 @@ axis('image');
 
 %Cu first
 % logged = log(mapPS1_Cu.counts);
-hFig=figure;
+Cu=figure;
 % image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
 image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,mapPS1_Cu.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
@@ -430,7 +587,7 @@ axis off;
 
 %Ni next
 % logged = log(mapPS1_Ni.counts);
-hFig=figure;
+Ni=figure;
 % image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,logged,'CDataMapping','scaled');
 image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,mapPS1_Ni.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
@@ -458,6 +615,22 @@ axis off;
 index_Cu = find(data_Cu(:,1)==scans(7));
 x_Cu = data_Cu(index_Cu,2);
 y_Cu = data_Cu(index_Cu,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Cu); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Cu)
+        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
 %Make the new thresholded image
 PS1_Cu = imbinarize(mapPS1_Cu.counts,threshold_Cu(1)); 
@@ -465,6 +638,21 @@ PS1_Cu = imbinarize(mapPS1_Cu.counts,threshold_Cu(1));
 index_Ni = find(data_Ni(:,1)==scans(7));
 x_Ni = data_Ni(index_Ni,2);
 y_Ni = data_Ni(index_Ni,3);
+if strcmp(circle_parts,'Y')==1
+    figure(Ni); 
+    for i = 1:length(x_Ni)
+        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
 %Make the new thresholded image
 PS1_Ni = imbinarize(mapPS1_Ni.counts,threshold_Ni(1)); 
