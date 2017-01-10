@@ -50,6 +50,8 @@ Ni_SAL1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt
 Ni_SAL1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0190.h5.txt'; 
 elastic_SAL1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0189.h5.txt'; 
 elastic_SAL1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0190.h5.txt'; 
+Cu_small_SAL1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0191.h5.txt';
+Ni_small_SAL1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0191.h5.txt';
 
 %SAH-1 (scans 204, 205)
 Cu_SAH1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0204.h5.txt'; 
@@ -58,6 +60,8 @@ Ni_SAH1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt
 Ni_SAH1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0205.h5.txt'; 
 elastic_SAH1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0204.h5.txt'; 
 elastic_SAH1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0205.h5.txt'; 
+Cu_small_SAH1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0206.h5.txt';
+Ni_small_SAH1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0206.h5.txt';
 
 %S-1 as-grown (2016c2 scans 206 for Cu/Ni, scan 213 for Ti)
 Cu_S1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0206.h5.txt'; 
@@ -68,11 +72,15 @@ elastic_S1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.
 elastic_S1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0213.h5.txt'; 
 Ti_S1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0206.h5.txt'; 
 Ti_S1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0213.h5.txt'; 
+Cu_small_S1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0207.h5.txt';
+Ni_small_S1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0207.h5.txt';
 
 %Phosphorous diffusion PS1 (2016c3 scan 102)
 Cu_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0102.h5.txt'; 
 Ni_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0102.h5.txt'; 
 elastic_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_s_e_2idd_0102.h5.txt'; 
+
+%% After we run the above section, then we get all of the data we specified
 
 %Get all of the maps for SAL-1
 [mapSAL1_1_Cu] = processAsciiFile(Cu_SAL1_1,cutoff_flag,cutoff_min,cutoff_max);
@@ -81,6 +89,8 @@ elastic_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filt
 [mapSAL1_2_Ni] = processAsciiFile(Ni_SAL1_2,cutoff_flag,cutoff_min,cutoff_max);
 [mapSAL1_1_elastic] = processAsciiFile(elastic_SAL1_1,cutoff_flag,cutoff_min,cutoff_max);
 [mapSAL1_2_elastic] = processAsciiFile(elastic_SAL1_2,cutoff_flag,cutoff_min,cutoff_max);
+[mapSAL1_small_Cu] = processAsciiFile(Cu_small_SAL1,cutoff_flag,cutoff_min,cutoff_max);
+[mapSAL1_small_Ni] = processAsciiFile(Ni_small_SAL1,cutoff_flag,cutoff_min,cutoff_max);
 
 %Get all of the maps for SAH-1
 [mapSAH1_1_Cu] = processAsciiFile(Cu_SAH1_1,cutoff_flag,cutoff_min,cutoff_max);
@@ -89,6 +99,8 @@ elastic_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filt
 [mapSAH1_2_Ni] = processAsciiFile(Ni_SAH1_2,cutoff_flag,cutoff_min,cutoff_max);
 [mapSAH1_1_elastic] = processAsciiFile(elastic_SAH1_1,cutoff_flag,cutoff_min,cutoff_max);
 [mapSAH1_2_elastic] = processAsciiFile(elastic_SAH1_2,cutoff_flag,cutoff_min,cutoff_max);
+[mapSAH1_small_Cu] = processAsciiFile(Cu_small_SAH1,cutoff_flag,cutoff_min,cutoff_max);
+[mapSAH1_small_Ni] = processAsciiFile(Ni_small_SAH1,cutoff_flag,cutoff_min,cutoff_max);
 
 %Get all of the maps for S1
 [mapS1_1_Cu] = processAsciiFile(Cu_S1_1,cutoff_flag,cutoff_min,cutoff_max);
@@ -99,6 +111,8 @@ elastic_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filt
 [mapS1_2_elastic] = processAsciiFile(elastic_S1_2,cutoff_flag,cutoff_min,cutoff_max);
 [mapS1_1_Ti] = processAsciiFile(Ti_S1_1,cutoff_flag,cutoff_min,cutoff_max);
 [mapS1_2_Ti] = processAsciiFile(Ti_S1_2,cutoff_flag,cutoff_min,cutoff_max);
+[mapS1_small_Cu] = processAsciiFile(Cu_small_S1,cutoff_flag,cutoff_min,cutoff_max);
+[mapS1_small_Ni] = processAsciiFile(Ni_small_S1,cutoff_flag,cutoff_min,cutoff_max);
 
 %Get all of the maps for PS1
 [mapPS1_Cu] = processAsciiFile(Cu_PS1,cutoff_flag,cutoff_min,cutoff_max);
@@ -119,7 +133,7 @@ image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,mapSAL1_2_Cu.counts,'CDataMapping'
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 0.007]);
+caxis([0 0.01]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off; 
@@ -136,7 +150,7 @@ image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,mapSAL1_2_Ni.counts,'CDataMapping'
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 0.015]);
+caxis([0 0.01]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -154,7 +168,9 @@ axis image;
 caxis([1060 1665]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
+set(hFig,'PaperPositionMode','auto');
 axis off;
+print('-dpng','-r0','SAL-1_elastic');
 
 %Get the particle information
 index_Cu = find(data_Cu(:,1)==scans(1));
@@ -260,6 +276,34 @@ figure(Ni_thresh);
 hold all; 
 image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,SAL1_2_Ni,'CDataMapping','scaled');
 axis('image'); 
+
+set(Cu,'PaperPositionMode','auto');
+print(Cu,'-dpng','-r0','SAL-1_Cu');
+set(Ni,'PaperPositionMode','auto');
+print(Ni,'-dpng','-r0','SAL-1_Ni');
+
+%Plot the small maps
+hFig=figure;
+image(mapSAL1_small_Cu.xValue,mapSAL1_small_Cu.yValue,mapSAL1_small_Cu.counts,'CDataMapping','scaled');
+colormap(parula);
+axis image; 
+caxis([0 0.01]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off; 
+set(hFig,'PaperPositionMode','auto');
+print('-dpng','-r0','SAL-1_Cu_small');
+
+hFig=figure;
+image(mapSAL1_small_Ni.xValue,mapSAL1_small_Ni.yValue,mapSAL1_small_Ni.counts,'CDataMapping','scaled');
+colormap(parula);
+axis image; 
+caxis([0 0.01]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off; 
+set(hFig,'PaperPositionMode','auto');
+print('-dpng','-r0','SAL-1_Ni_small');
 %% SAH-1
 
 %Cu first
@@ -291,7 +335,7 @@ image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,mapSAH1_2_Ni.counts,'CDataMapping'
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 0.014]);
+caxis([0 0.01]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -312,6 +356,9 @@ caxis([1054 1572]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','SAH-1_elastic');
 
 %Get the particle information
 index_Cu = find(data_Cu(:,1)==scans(3));
@@ -416,6 +463,34 @@ figure(Ni_thresh);
 hold all; 
 image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,SAH1_2_Ni,'CDataMapping','scaled');
 axis('image'); 
+
+set(Cu,'PaperPositionMode','auto');
+print(Cu,'-dpng','-r0','SAH-1_Cu');
+set(Ni,'PaperPositionMode','auto');
+print(Ni,'-dpng','-r0','SAH-1_Ni');
+
+%Plot the small maps
+hFig=figure;
+image(mapSAL1_small_Cu.xValue,mapSAL1_small_Cu.yValue,mapSAL1_small_Cu.counts,'CDataMapping','scaled');
+colormap(parula);
+axis image; 
+caxis([0 0.01]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off; 
+set(hFig,'PaperPositionMode','auto');
+print('-dpng','-r0','SAH-1_Cu_small');
+
+hFig=figure;
+image(mapSAL1_small_Ni.xValue,mapSAL1_small_Ni.yValue,mapSAL1_small_Ni.counts,'CDataMapping','scaled');
+colormap(parula);
+axis image; 
+caxis([0 0.01]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off; 
+set(hFig,'PaperPositionMode','auto');
+print('-dpng','-r0','SAH-1_Ni_small');
 %% S1 2016c2 - these we plot separately because they are in different locations
 
 %Cu first
@@ -426,7 +501,7 @@ image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,mapS1_1_Cu.counts,'CDataMapping','scal
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 1.34]);
+caxis([0 0.75]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -442,6 +517,9 @@ caxis([0 0.04]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','S-1_2_Ni');
 
 %Ni next
 % logged = log(mapS1_1_Ni.counts);
@@ -451,7 +529,7 @@ image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,mapS1_1_Ni.counts,'CDataMapping','scal
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 0.34]);
+caxis([0 0.75]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -467,6 +545,9 @@ caxis([0 0.04]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','S-1_2_Ni');
 
 %elastic next
 % logged = log(mapS1_1_elastic.counts);
@@ -480,6 +561,9 @@ caxis([2800 100000]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','S-1_1_elastic');
 
 hFig = figure; 
 % logged = log(mapS1_2_elastic.counts);
@@ -492,6 +576,9 @@ caxis([2154 4663]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','S-1_2_elastic');
 
 %Ti at last
 % logged = log(mapS1_1_Ti.counts);
@@ -505,6 +592,9 @@ caxis([0 0.06]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','S-1_1_Ti');
 
 hFig = figure; 
 % logged = log(mapS1_2_Ti.counts);
@@ -517,6 +607,9 @@ caxis([0 44.2]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','S-1_2_Ti');
 
 %Get the particle information
 index_Cu = find(data_Cu(:,1)==scans(5));
@@ -570,6 +663,33 @@ Ni_thresh = figure;
 image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,S1_1_Ni,'CDataMapping','scaled');
 axis('image'); 
 
+set(Cu,'PaperPositionMode','auto');
+print(Cu,'-dpng','-r0','S-1_1_Cu');
+set(Ni,'PaperPositionMode','auto');
+print(Ni,'-dpng','-r0','S-1_1_Ni');
+
+%Plot the small maps
+hFig=figure;
+image(mapSAL1_small_Cu.xValue,mapSAL1_small_Cu.yValue,mapSAL1_small_Cu.counts,'CDataMapping','scaled');
+colormap(parula);
+axis image; 
+caxis([0 0.01]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off; 
+set(hFig,'PaperPositionMode','auto');
+print('-dpng','-r0','S1_Cu_small');
+
+hFig=figure;
+image(mapSAL1_small_Ni.xValue,mapSAL1_small_Ni.yValue,mapSAL1_small_Ni.counts,'CDataMapping','scaled');
+colormap(parula);
+axis image; 
+caxis([0 0.01]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off; 
+set(hFig,'PaperPositionMode','auto');
+print('-dpng','-r0','S1_Ni_small');
 %% PS1
 
 %Cu first
@@ -593,7 +713,7 @@ image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,mapPS1_Ni.counts,'CDataMapping','scaled'
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 0.008]);
+caxis([0 0.01]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -610,6 +730,9 @@ caxis([821 1479]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','PS1_elastic');
 
 %Get the particle information
 index_Cu = find(data_Cu(:,1)==scans(7));
@@ -663,52 +786,7 @@ Ni_thresh = figure;
 image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,PS1_Ni,'CDataMapping','scaled');
 axis('image'); 
 
-%% 187 As-grown
-
-%Pick out the relevant x,y data for this scan
-index4 = find(data4(:,1)==1);
-x4 = data4(index4,4);
-y4 = data4(index4,5);
-
-%First for 4 standard deviations
-%Make individual figures for each sample
-logged = log(map187_AG.counts);
-hFig=figure;
-% image(map187_AG.xValue,map187_AG.yValue,map187_AG.counts,'CDataMapping','scaled');
-image(map187_AG.xValue,map187_AG.yValue,logged,'CDataMapping','scaled');
-colormap(flipud(gray));
-% axis([min(map187_AG.xValue) max(map187_AG.xValue) min(map187_AG.yValue) max(map187_AG.yValue)]); 
-axis image; 
-% cbar = colorbar_log([10^(-max(max(map187_AG.counts))) 10^(-0)]);
-% caxis([min(min(map187_AG.counts)) max(max(map187_AG.counts))]);
-caxis([-5 -2]);
-
-disp('187 AG limits...'); 
-[min(min(map187_AG.counts)) max(max(map187_AG.counts))]
-
-%Pick out each particle automatically and draw a circle around it
-for i = 1:length(x4)
-    x_now = (x4(i)-radius):(radius/1000):(x4(i)+radius);
-    
-    %Calculate respective y-values
-    y_now = sqrt((radius^2)-((x_now-x4(i)).^2))+y4(i); 
-    y_now_opp = -sqrt((radius^2)-((x_now-x4(i)).^2))+y4(i);
-    
-    hold all; 
-    plot(x_now,y_now,'b','LineWidth',linewidth); %Blue for extended
-    hold all;
-    plot(x_now,y_now_opp,'b','LineWidth',linewidth);
-end
-
-%axis equal;
-axis off;
-title('187 As-grown - sigma 3');
-hold on; 
-[m,n] = size(map187_AG.counts);
-set(gcf,'PaperPositionMode','auto');
-set(hFig,'Position',[0 0 n*macroscale m*macroscale]);
-box on;
-print('-dpng','-r0','187AsGrown_sig4_pub');
-
-
-
+set(Cu,'PaperPositionMode','auto');
+print(Cu,'-dpng','-r0','PS1_Cu');
+set(Ni,'PaperPositionMode','auto');
+print(Ni,'-dpng','-r0','PS1_Ni');
