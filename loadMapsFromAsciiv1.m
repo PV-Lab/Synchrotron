@@ -25,7 +25,8 @@ SOFTWARE.
 
 %% loadMapsFromAsciiv1.m
 
-startFileName = 'C:\Users\Malloryj\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_';
+% startFileName = 'C:\Users\Malloryj\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_';
+startFileName = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_';
 % startFileName = 'C:\Users\Malloryj\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_';
 endFileName   = '.h5.txt'; % for quantified
 

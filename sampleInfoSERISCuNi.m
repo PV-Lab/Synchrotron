@@ -39,8 +39,9 @@ SOFTWARE.
 % hiResScans = {'0189','0190','0204','0205'}; 
 % Samples = {'SAL_1','SAL_2','SAH_1','SAH_2'}; %Exclude the last 189 scan because no particles were found
 % hiResScans = {'0189','0190','0204','0205'}; 
-Samples = {'GB','Grain'};
-hiResScans = {'0206','0213'};
+% Samples = {'GB','Grain'};
+% hiResScans = {'0206','0213'};
+
 
 channels = {'Si','Cu','Ni','s_e'};
 
