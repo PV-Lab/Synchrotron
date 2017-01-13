@@ -25,7 +25,7 @@ SOFTWARE.
 clear all; close all; clc;
 
 %Read in x,y particle data for each sigma 
-filename = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\particle_details.xlsx';
+filename = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\particle_details.xlsx';
 
 data_Cu = xlsread(filename,'Cu'); 
 data_Ni = xlsread(filename,'Ni'); 
@@ -44,41 +44,45 @@ cutoff_min = 88;
 cutoff_max = 95;
 
 %SAL-1 (scans 189, 190)
-Cu_SAL1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0189.h5.txt'; 
-Cu_SAL1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0190.h5.txt'; 
-Ni_SAL1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0189.h5.txt'; 
-Ni_SAL1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0190.h5.txt'; 
-elastic_SAL1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0189.h5.txt'; 
-elastic_SAL1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0190.h5.txt'; 
-Cu_small_SAL1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0191.h5.txt';
-Ni_small_SAL1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0191.h5.txt';
+Cu_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0189.h5.txt'; 
+Cu_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0190.h5.txt'; 
+Ni_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0189.h5.txt'; 
+Ni_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0190.h5.txt'; 
+elastic_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0189.h5.txt'; 
+elastic_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0190.h5.txt'; 
+Cu_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0191.h5.txt';
+Ni_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0191.h5.txt';
 
 %SAH-1 (scans 204, 205)
-Cu_SAH1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0204.h5.txt'; 
-Cu_SAH1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0205.h5.txt'; 
-Ni_SAH1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0204.h5.txt'; 
-Ni_SAH1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0205.h5.txt'; 
-elastic_SAH1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0204.h5.txt'; 
-elastic_SAH1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0205.h5.txt'; 
-Cu_small_SAH1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0206.h5.txt';
-Ni_small_SAH1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0206.h5.txt';
+Cu_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0204.h5.txt'; 
+Cu_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0205.h5.txt'; 
+Ni_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0204.h5.txt'; 
+Ni_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0205.h5.txt'; 
+elastic_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0204.h5.txt'; 
+elastic_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0205.h5.txt'; 
+Cu_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0206.h5.txt';
+Ni_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0206.h5.txt';
 
 %S-1 as-grown (2016c2 scans 206 for Cu/Ni, scan 213 for Ti)
-Cu_S1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0206.h5.txt'; 
-Cu_S1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0213.h5.txt'; 
-Ni_S1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0206.h5.txt'; 
-Ni_S1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0213.h5.txt'; 
-elastic_S1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0206.h5.txt'; 
-elastic_S1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0213.h5.txt'; 
-Ti_S1_1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0206.h5.txt'; 
-Ti_S1_2 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0213.h5.txt'; 
-Cu_small_S1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0207.h5.txt';
-Ni_small_S1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0207.h5.txt';
+Cu_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0206.h5.txt'; 
+Cu_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0213.h5.txt'; 
+Ni_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0206.h5.txt'; 
+Ni_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0213.h5.txt'; 
+elastic_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0206.h5.txt'; 
+elastic_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0213.h5.txt'; 
+Ti_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0206.h5.txt'; 
+Ti_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0213.h5.txt'; 
+Cu_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0207.h5.txt';
+Ni_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0207.h5.txt';
 
 %Phosphorous diffusion PS1 (2016c3 scan 102)
-Cu_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0102.h5.txt'; 
-Ni_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0102.h5.txt'; 
-elastic_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_s_e_2idd_0102.h5.txt'; 
+Cu_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0102.h5.txt'; 
+Ni_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0102.h5.txt'; 
+elastic_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_s_e_2idd_0102.h5.txt'; 
+
+%26-ID-C data
+Cu_26 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\26-ID-C 2016c3\output\ASCII_Cu_26idbSOFT_0153.h5.txt';
+Ni_26 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\26-ID-C 2016c3\output\ASCII_Ni_26idbSOFT_0153.h5.txt';
 
 %% After we run the above section, then we get all of the data we specified
 
@@ -118,6 +122,10 @@ elastic_PS1 = 'C:\Users\Mariela\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filt
 [mapPS1_Cu] = processAsciiFile(Cu_PS1,cutoff_flag,cutoff_min,cutoff_max);
 [mapPS1_Ni] = processAsciiFile(Ni_PS1,cutoff_flag,cutoff_min,cutoff_max);
 [mapPS1_elastic] = processAsciiFile(elastic_PS1,cutoff_flag,cutoff_min,cutoff_max);
+
+%26 maps
+[map26_Cu] = processAsciiFile(Cu_26,cutoff_flag,cutoff_min,cutoff_max);
+[map26_Ni] = processAsciiFile(Ni_26,cutoff_flag,cutoff_min,cutoff_max);
 
 %% SAL-1
 
@@ -790,3 +798,31 @@ set(Cu,'PaperPositionMode','auto');
 print(Cu,'-dpng','-r0','PS1_Cu');
 set(Ni,'PaperPositionMode','auto');
 print(Ni,'-dpng','-r0','PS1_Ni');
+
+%% 26-ID-C maps
+Cu=figure;
+% image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
+image(map26_Cu.xValue,map26_Cu.yValue,map26_Cu.counts,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([0 6.4]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+
+Ni=figure;
+% image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
+image(map26_Ni.xValue,map26_Ni.yValue,map26_Ni.counts,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([0 2.7]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+
+set(Cu,'PaperPositionMode','auto');
+print(Cu,'-dpng','-r0','26IDC_Cu');
+set(Ni,'PaperPositionMode','auto');
+print(Ni,'-dpng','-r0','26IDC_Ni');
