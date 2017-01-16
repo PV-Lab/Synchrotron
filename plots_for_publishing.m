@@ -25,12 +25,12 @@ SOFTWARE.
 clear all; close all; clc;
 
 %Read in x,y particle data for each sigma 
-filename = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\particle_details.xlsx';
-
-data_Cu = xlsread(filename,'Cu'); 
-data_Ni = xlsread(filename,'Ni'); 
-%scan numbers in order of our analysis
-scans = [189,190,204,205,206,213,102];
+% filename = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\particle_details.xlsx';
+% 
+% data_Cu = xlsread(filename,'Cu'); 
+% data_Ni = xlsread(filename,'Ni'); 
+% %scan numbers in order of our analysis
+% scans = [189,190,204,205,206,213,102];
 circle_parts = 'N'; 
 
 %Make plots for publication. 
@@ -43,786 +43,135 @@ cutoff_flag = 0;
 cutoff_min = 88;
 cutoff_max = 95;
 
-%SAL-1 (scans 189, 190)
-Cu_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0189.h5.txt'; 
-Cu_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0190.h5.txt'; 
-Ni_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0189.h5.txt'; 
-Ni_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0190.h5.txt'; 
-elastic_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0189.h5.txt'; 
-elastic_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0190.h5.txt'; 
-Cu_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0191.h5.txt';
-Ni_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0191.h5.txt';
+%ANU T1-A1
+ANU_T1_A1_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0113.h5.txt';
+ANU_T1_A1_Ca = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ca_2idd_0113.h5.txt';
+ANU_T1_A1_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ti_2idd_0113.h5.txt';
+ANU_T1_A1_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0113.h5.txt';
+ANU_T1_A1_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0113.h5.txt';
 
-%SAH-1 (scans 204, 205)
-Cu_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0204.h5.txt'; 
-Cu_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0205.h5.txt'; 
-Ni_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0204.h5.txt'; 
-Ni_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0205.h5.txt'; 
-elastic_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0204.h5.txt'; 
-elastic_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0205.h5.txt'; 
-Cu_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0206.h5.txt';
-Ni_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0206.h5.txt';
+%ANU T1-A2
+ANU_T1_A2_elastic = '';
 
-%S-1 as-grown (2016c2 scans 206 for Cu/Ni, scan 213 for Ti)
-Cu_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0206.h5.txt'; 
-Cu_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0213.h5.txt'; 
-Ni_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0206.h5.txt'; 
-Ni_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0213.h5.txt'; 
-elastic_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0206.h5.txt'; 
-elastic_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0213.h5.txt'; 
-Ti_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0206.h5.txt'; 
-Ti_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0213.h5.txt'; 
-Cu_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0207.h5.txt';
-Ni_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0207.h5.txt';
-
-%Phosphorous diffusion PS1 (2016c3 scan 102)
-Cu_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0102.h5.txt'; 
-Ni_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0102.h5.txt'; 
-elastic_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_s_e_2idd_0102.h5.txt'; 
-
-%26-ID-C data
-Cu_26 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\26-ID-C 2016c3\output\ASCII_Cu_26idbSOFT_0153.h5.txt';
-Ni_26 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\26-ID-C 2016c3\output\ASCII_Ni_26idbSOFT_0153.h5.txt';
+%ANU T1-C2
+ANU_T1_C2_elastic = ''; 
 
 %% After we run the above section, then we get all of the data we specified
 
-%Get all of the maps for SAL-1
-[mapSAL1_1_Cu] = processAsciiFile(Cu_SAL1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAL1_2_Cu] = processAsciiFile(Cu_SAL1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAL1_1_Ni] = processAsciiFile(Ni_SAL1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAL1_2_Ni] = processAsciiFile(Ni_SAL1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAL1_1_elastic] = processAsciiFile(elastic_SAL1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAL1_2_elastic] = processAsciiFile(elastic_SAL1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAL1_small_Cu] = processAsciiFile(Cu_small_SAL1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAL1_small_Ni] = processAsciiFile(Ni_small_SAL1,cutoff_flag,cutoff_min,cutoff_max);
+%Get all the maps for ANU T1-A1
+[mapANU_T1_A1_elastic] = processAsciiFile(ANU_T1_A1_elastic,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A1_Ca] = processAsciiFile(ANU_T1_A1_Ca,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A1_Ti] = processAsciiFile(ANU_T1_A1_Ti,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A1_Fe] = processAsciiFile(ANU_T1_A1_Fe,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A1_Ni] = processAsciiFile(ANU_T1_A1_Ni,cutoff_flag,cutoff_min,cutoff_max);
 
-%Get all of the maps for SAH-1
-[mapSAH1_1_Cu] = processAsciiFile(Cu_SAH1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAH1_2_Cu] = processAsciiFile(Cu_SAH1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAH1_1_Ni] = processAsciiFile(Ni_SAH1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAH1_2_Ni] = processAsciiFile(Ni_SAH1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAH1_1_elastic] = processAsciiFile(elastic_SAH1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAH1_2_elastic] = processAsciiFile(elastic_SAH1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAH1_small_Cu] = processAsciiFile(Cu_small_SAH1,cutoff_flag,cutoff_min,cutoff_max);
-[mapSAH1_small_Ni] = processAsciiFile(Ni_small_SAH1,cutoff_flag,cutoff_min,cutoff_max);
+%% ANU T1-A1
 
-%Get all of the maps for S1
-[mapS1_1_Cu] = processAsciiFile(Cu_S1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_2_Cu] = processAsciiFile(Cu_S1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_1_Ni] = processAsciiFile(Ni_S1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_2_Ni] = processAsciiFile(Ni_S1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_1_elastic] = processAsciiFile(elastic_S1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_2_elastic] = processAsciiFile(elastic_S1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_1_Ti] = processAsciiFile(Ti_S1_1,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_2_Ti] = processAsciiFile(Ti_S1_2,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_small_Cu] = processAsciiFile(Cu_small_S1,cutoff_flag,cutoff_min,cutoff_max);
-[mapS1_small_Ni] = processAsciiFile(Ni_small_S1,cutoff_flag,cutoff_min,cutoff_max);
-
-%Get all of the maps for PS1
-[mapPS1_Cu] = processAsciiFile(Cu_PS1,cutoff_flag,cutoff_min,cutoff_max);
-[mapPS1_Ni] = processAsciiFile(Ni_PS1,cutoff_flag,cutoff_min,cutoff_max);
-[mapPS1_elastic] = processAsciiFile(elastic_PS1,cutoff_flag,cutoff_min,cutoff_max);
-
-%26 maps
-[map26_Cu] = processAsciiFile(Cu_26,cutoff_flag,cutoff_min,cutoff_max);
-[map26_Ni] = processAsciiFile(Ni_26,cutoff_flag,cutoff_min,cutoff_max);
-
-%% SAL-1
-
-%Cu first
-% logged = log(mapSAL1_1_Cu.counts);
-Cu=figure;
-% image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,logged,'CDataMapping','scaled');
-image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,mapSAL1_1_Cu.counts,'CDataMapping','scaled');
-hold all; 
-% logged = log(mapSAL1_2_Cu.counts);
-% image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,logged,'CDataMapping','scaled');
-image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,mapSAL1_2_Cu.counts,'CDataMapping','scaled');
+%Elastic first
+hFig=figure;
+image(mapANU_T1_A1_elastic.xValue,mapANU_T1_A1_elastic.yValue,mapANU_T1_A1_elastic.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 0.01]);
+caxis([110 155]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','ANU_T1-A1_elastic');
+
+%Ca first
+logged = log(mapANU_T1_A1_Ca.counts);
+% logged = mapANU_T1_A1_Ca.counts;
+Ca=figure;
+image(mapANU_T1_A1_Ca.xValue,mapANU_T1_A1_Ca.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-4 max(max(logged))]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off; 
+colorbar; 
 
-%Ni next
-% logged = log(mapSAL1_1_Ni.counts);
+%Ti first
+logged = log(mapANU_T1_A1_Ti.counts);
+% logged = mapANU_T1_A1_Ti.counts;
+Ti=figure;
+image(mapANU_T1_A1_Ti.xValue,mapANU_T1_A1_Ti.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-6 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
+%Fe first
+logged = log(mapANU_T1_A1_Fe.counts);
+% logged = mapANU_T1_A1_Fe.counts;
+Fe=figure;
+image(mapANU_T1_A1_Fe.xValue,mapANU_T1_A1_Fe.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-6 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
+%Ni first
+logged = log(mapANU_T1_A1_Ni.counts);
+% logged = mapANU_T1_A1_Ni.counts;
 Ni=figure;
-% image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,logged,'CDataMapping','scaled');
-image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,mapSAL1_1_Ni.counts,'CDataMapping','scaled');
-hold all; 
-% logged = log(mapSAL1_2_Ni.counts);
-% image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,logged,'CDataMapping','scaled');
-image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,mapSAL1_2_Ni.counts,'CDataMapping','scaled');
+image(mapANU_T1_A1_Ni.xValue,mapANU_T1_A1_Ni.yValue,logged,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 0.01]);
+caxis([-5.5 max(max(logged))]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
+colorbar; 
 
-%Elastic next
-logged = log(mapSAL1_1_elastic.counts);
-hFig=figure;
-image(mapSAL1_1_elastic.xValue,mapSAL1_1_elastic.yValue,mapSAL1_1_elastic.counts,'CDataMapping','scaled');
-hold all; 
-logged = log(mapSAL1_2_elastic.counts);
-image(mapSAL1_2_elastic.xValue,mapSAL1_2_elastic.yValue,mapSAL1_2_elastic.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([1060 1665]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','SAL-1_elastic');
+% %Get the particle information
+% index_Cu = find(data_Cu(:,1)==scans(1));
+% x_Cu = data_Cu(index_Cu,2);
+% y_Cu = data_Cu(index_Cu,3);
+% if strcmp(circle_parts,'Y')==1
+%     %Plot the particles on top of the XRF image
+%     figure(Cu); 
+%     %Pick out each particle automatically and draw a circle around it
+%     for i = 1:length(x_Cu)
+%         x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+% 
+%         %Calculate respective y-values
+%         y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+%         y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+% 
+%         hold all; 
+%         plot(x_now,y_now,'r','LineWidth',linewidth); 
+%         hold all;
+%         plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+%     end
+% end
+% threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
+% %Make the new thresholded image
+% SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1)); 
+% Cu_thresh = figure; 
+% image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,SAL1_1_Cu,'CDataMapping','scaled');
 
-%Get the particle information
-index_Cu = find(data_Cu(:,1)==scans(1));
-x_Cu = data_Cu(index_Cu,2);
-y_Cu = data_Cu(index_Cu,3);
-if strcmp(circle_parts,'Y')==1
-    %Plot the particles on top of the XRF image
-    figure(Cu); 
-    %Pick out each particle automatically and draw a circle around it
-    for i = 1:length(x_Cu)
-        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-%Make the new thresholded image
-SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1)); 
-%Do the same for Ni
-index_Ni = find(data_Ni(:,1)==scans(1));
-x_Ni = data_Ni(index_Ni,2);
-y_Ni = data_Ni(index_Ni,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Ni); 
-    for i = 1:length(x_Ni)
-        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
-%Make the new thresholded image
-SAL1_1_Ni = imbinarize(mapSAL1_1_Ni.counts,threshold_Ni(1)); 
-Cu_thresh = figure; 
-image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,SAL1_1_Cu,'CDataMapping','scaled');
-Ni_thresh = figure; 
-image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,SAL1_1_Ni,'CDataMapping','scaled');
-
-
-%Repeat the above for the second scan on this sample
-index_Cu = find(data_Cu(:,1)==scans(2));
-x_Cu = data_Cu(index_Cu,2);
-y_Cu = data_Cu(index_Cu,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Cu); 
-    for i = 1:length(x_Cu)
-        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-%Make the new thresholded image
-SAL1_2_Cu = imbinarize(mapSAL1_2_Cu.counts,threshold_Cu(1)); 
-%Do the same for Ni
-index_Ni = find(data_Ni(:,1)==scans(2));
-x_Ni = data_Ni(index_Ni,2);
-y_Ni = data_Ni(index_Ni,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Ni); 
-    for i = 1:length(x_Ni)
-        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
-%Make the new thresholded image
-SAL1_2_Ni = imbinarize(mapSAL1_2_Ni.counts,threshold_Ni(1)); 
-figure(Cu_thresh)
-hold all; 
-image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,SAL1_2_Cu,'CDataMapping','scaled');
-axis('image'); 
-figure(Ni_thresh);
-hold all; 
-image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,SAL1_2_Ni,'CDataMapping','scaled');
-axis('image'); 
-
-set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','SAL-1_Cu');
+set(Ca,'PaperPositionMode','auto');
+print(Ca,'-dpng','-r0','ANU_T1-A1_Ca');
+savefig(Ca,'ANU_T1-A1_Ca.fig');
+set(Fe,'PaperPositionMode','auto');
+print(Fe,'-dpng','-r0','ANU_T1-A1_Fe');
+savefig(Fe,'ANU_T1-A1_Fe.fig');
+set(Ti,'PaperPositionMode','auto');
+print(Ti,'-dpng','-r0','ANU_T1-A1_Ti');
+savefig(Ti,'ANU_T1-A1_Ti.fig');
 set(Ni,'PaperPositionMode','auto');
-print(Ni,'-dpng','-r0','SAL-1_Ni');
-
-%Plot the small maps
-hFig=figure;
-image(mapSAL1_small_Cu.xValue,mapSAL1_small_Cu.yValue,mapSAL1_small_Cu.counts,'CDataMapping','scaled');
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off; 
-set(hFig,'PaperPositionMode','auto');
-print('-dpng','-r0','SAL-1_Cu_small');
-
-hFig=figure;
-image(mapSAL1_small_Ni.xValue,mapSAL1_small_Ni.yValue,mapSAL1_small_Ni.counts,'CDataMapping','scaled');
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off; 
-set(hFig,'PaperPositionMode','auto');
-print('-dpng','-r0','SAL-1_Ni_small');
-%% SAH-1
-
-%Cu first
-% logged = log(mapSAH1_1_Cu.counts);
-Cu=figure;
-% image(mapSAH1_1_Cu.xValue,mapSAH1_1_Cu.yValue,logged,'CDataMapping','scaled');
-image(mapSAH1_1_Cu.xValue,mapSAH1_1_Cu.yValue,mapSAH1_1_Cu.counts,'CDataMapping','scaled');
-hold all; 
-% logged = log(mapSAH1_2_Cu.counts);
-% image(mapSAH1_2_Cu.xValue,mapSAH1_2_Cu.yValue,logged,'CDataMapping','scaled');
-image(mapSAH1_2_Cu.xValue,mapSAH1_2_Cu.yValue,mapSAH1_2_Cu.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-%Ni next
-% logged = log(mapSAH1_1_Ni.counts);
-Ni=figure;
-% image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,logged,'CDataMapping','scaled');
-image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,mapSAH1_1_Ni.counts,'CDataMapping','scaled');
-hold all; 
-% logged = log(mapSAH1_2_Ni.counts);
-% image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,logged,'CDataMapping','scaled');
-image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,mapSAH1_2_Ni.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-%elastic next
-% logged = log(mapSAH1_1_elastic.counts);
-hFig=figure;
-% image(mapSAH1_1_elastic.xValue,mapSAH1_1_elastic.yValue,logged,'CDataMapping','scaled');
-image(mapSAH1_1_elastic.xValue,mapSAH1_1_elastic.yValue,mapSAH1_1_elastic.counts,'CDataMapping','scaled');
-hold all; 
-% logged = log(mapSAH1_2_elastic.counts);
-% image(mapSAH1_2_elastic.xValue,mapSAH1_2_elastic.yValue,logged,'CDataMapping','scaled');
-image(mapSAH1_2_elastic.xValue,mapSAH1_2_elastic.yValue,mapSAH1_2_elastic.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([1054 1572]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','SAH-1_elastic');
-
-%Get the particle information
-index_Cu = find(data_Cu(:,1)==scans(3));
-x_Cu = data_Cu(index_Cu,2);
-y_Cu = data_Cu(index_Cu,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Cu); 
-    %Pick out each particle automatically and draw a circle around it
-    for i = 1:length(x_Cu)
-        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-%Make the new thresholded image
-SAH1_1_Cu = imbinarize(mapSAH1_1_Cu.counts,threshold_Cu(1)); 
-%Do the same for Ni
-index_Ni = find(data_Ni(:,1)==scans(3));
-x_Ni = data_Ni(index_Ni,2);
-y_Ni = data_Ni(index_Ni,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Ni); 
-    for i = 1:length(x_Ni)
-        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
-%Make the new thresholded image
-SAH1_1_Ni = imbinarize(mapSAH1_1_Ni.counts,threshold_Ni(1)); 
-Cu_thresh = figure; 
-image(mapSAH1_1_Cu.xValue,mapSAH1_1_Cu.yValue,SAH1_1_Cu,'CDataMapping','scaled');
-Ni_thresh = figure; 
-image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,SAH1_1_Ni,'CDataMapping','scaled');
-
-%Repeat the above for the second scan on this sample
-index_Cu = find(data_Cu(:,1)==scans(4));
-x_Cu = data_Cu(index_Cu,2);
-y_Cu = data_Cu(index_Cu,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Cu); 
-    %Pick out each particle automatically and draw a circle around it
-    for i = 1:length(x_Cu)
-        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-%Make the new thresholded image
-SAH1_2_Cu = imbinarize(mapSAH1_2_Cu.counts,threshold_Cu(1)); 
-%Do the same for Ni
-index_Ni = find(data_Ni(:,1)==scans(4));
-x_Ni = data_Ni(index_Ni,2);
-y_Ni = data_Ni(index_Ni,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Ni); 
-    for i = 1:length(x_Ni)
-        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
-%Make the new thresholded image
-SAH1_2_Ni = imbinarize(mapSAH1_2_Ni.counts,threshold_Ni(1)); 
-figure(Cu_thresh)
-hold all; 
-image(mapSAH1_2_Cu.xValue,mapSAH1_2_Cu.yValue,SAH1_2_Cu,'CDataMapping','scaled');
-axis('image'); 
-figure(Ni_thresh);
-hold all; 
-image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,SAH1_2_Ni,'CDataMapping','scaled');
-axis('image'); 
-
-set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','SAH-1_Cu');
-set(Ni,'PaperPositionMode','auto');
-print(Ni,'-dpng','-r0','SAH-1_Ni');
-
-%Plot the small maps
-hFig=figure;
-image(mapSAL1_small_Cu.xValue,mapSAL1_small_Cu.yValue,mapSAL1_small_Cu.counts,'CDataMapping','scaled');
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off; 
-set(hFig,'PaperPositionMode','auto');
-print('-dpng','-r0','SAH-1_Cu_small');
-
-hFig=figure;
-image(mapSAL1_small_Ni.xValue,mapSAL1_small_Ni.yValue,mapSAL1_small_Ni.counts,'CDataMapping','scaled');
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off; 
-set(hFig,'PaperPositionMode','auto');
-print('-dpng','-r0','SAH-1_Ni_small');
-%% S1 2016c2 - these we plot separately because they are in different locations
-
-%Cu first
-% logged = log(mapS1_1_Cu.counts);
-Cu=figure;
-% image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,logged,'CDataMapping','scaled');
-image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,mapS1_1_Cu.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.75]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-hFig=figure; 
-% logged = log(mapS1_2_Cu.counts);
-% image(mapS1_2_Cu.xValue,mapS1_2_Cu.yValue,logged,'CDataMapping','scaled');
-image(mapS1_2_Cu.xValue,mapS1_2_Cu.yValue,mapS1_2_Cu.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.04]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','S-1_2_Ni');
-
-%Ni next
-% logged = log(mapS1_1_Ni.counts);
-Ni=figure;
-% image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,logged,'CDataMapping','scaled');
-image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,mapS1_1_Ni.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.75]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-hFig = figure; 
-% logged = log(mapS1_2_Ni.counts);
-% image(mapS1_2_Ni.xValue,mapS1_2_Ni.yValue,logged,'CDataMapping','scaled');
-image(mapS1_2_Ni.xValue,mapS1_2_Ni.yValue,mapS1_2_Ni.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.04]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','S-1_2_Ni');
-
-%elastic next
-% logged = log(mapS1_1_elastic.counts);
-hFig=figure;
-% image(mapS1_1_elastic.xValue,mapS1_1_elastic.yValue,logged,'CDataMapping','scaled');
-image(mapS1_1_elastic.xValue,mapS1_1_elastic.yValue,mapS1_1_elastic.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([2800 100000]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','S-1_1_elastic');
-
-hFig = figure; 
-% logged = log(mapS1_2_elastic.counts);
-% image(mapS1_2_elastic.xValue,mapS1_2_elastic.yValue,logged,'CDataMapping','scaled');
-image(mapS1_2_elastic.xValue,mapS1_2_elastic.yValue,mapS1_2_elastic.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([2154 4663]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','S-1_2_elastic');
-
-%Ti at last
-% logged = log(mapS1_1_Ti.counts);
-hFig=figure;
-% image(mapS1_1_Ti.xValue,mapS1_1_Ti.yValue,logged,'CDataMapping','scaled');
-image(mapS1_1_Ti.xValue,mapS1_1_Ti.yValue,mapS1_1_Ti.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.06]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','S-1_1_Ti');
-
-hFig = figure; 
-% logged = log(mapS1_2_Ti.counts);
-% image(mapS1_2_Ti.xValue,mapS1_2_Ti.yValue,logged,'CDataMapping','scaled');
-image(mapS1_2_Ti.xValue,mapS1_2_Ti.yValue,mapS1_2_Ti.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 44.2]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','S-1_2_Ti');
-
-%Get the particle information
-index_Cu = find(data_Cu(:,1)==scans(5));
-x_Cu = data_Cu(index_Cu,2);
-y_Cu = data_Cu(index_Cu,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Cu); 
-    %Pick out each particle automatically and draw a circle around it
-    for i = 1:length(x_Cu)
-        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-%Make the new thresholded image
-S1_1_Cu = imbinarize(mapS1_1_Cu.counts,threshold_Cu(1)); 
-%Do the same for Ni
-index_Ni = find(data_Ni(:,1)==scans(5));
-x_Ni = data_Ni(index_Ni,2);
-y_Ni = data_Ni(index_Ni,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Ni); 
-    for i = 1:length(x_Ni)
-        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
-%Make the new thresholded image
-S1_1_Ni = imbinarize(mapS1_1_Ni.counts,threshold_Ni(1)); 
-Cu_thresh = figure; 
-image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,S1_1_Cu,'CDataMapping','scaled');
-axis('image'); 
-Ni_thresh = figure; 
-image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,S1_1_Ni,'CDataMapping','scaled');
-axis('image'); 
-
-set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','S-1_1_Cu');
-set(Ni,'PaperPositionMode','auto');
-print(Ni,'-dpng','-r0','S-1_1_Ni');
-
-%Plot the small maps
-hFig=figure;
-image(mapSAL1_small_Cu.xValue,mapSAL1_small_Cu.yValue,mapSAL1_small_Cu.counts,'CDataMapping','scaled');
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off; 
-set(hFig,'PaperPositionMode','auto');
-print('-dpng','-r0','S1_Cu_small');
-
-hFig=figure;
-image(mapSAL1_small_Ni.xValue,mapSAL1_small_Ni.yValue,mapSAL1_small_Ni.counts,'CDataMapping','scaled');
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off; 
-set(hFig,'PaperPositionMode','auto');
-print('-dpng','-r0','S1_Ni_small');
-%% PS1
-
-%Cu first
-% logged = log(mapPS1_Cu.counts);
-Cu=figure;
-% image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
-image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,mapPS1_Cu.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-%Ni next
-% logged = log(mapPS1_Ni.counts);
-Ni=figure;
-% image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,logged,'CDataMapping','scaled');
-image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,mapPS1_Ni.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 0.01]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-%elastic next
-% logged = log(mapPS1_elastic.counts);
-hFig=figure;
-% image(mapPS1_elastic.xValue,mapPS1_elastic.yValue,logged,'CDataMapping','scaled');
-image(mapPS1_elastic.xValue,mapPS1_elastic.yValue,mapPS1_elastic.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([821 1479]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-set(hFig,'PaperPositionMode','auto');
-axis off;
-print('-dpng','-r0','PS1_elastic');
-
-%Get the particle information
-index_Cu = find(data_Cu(:,1)==scans(7));
-x_Cu = data_Cu(index_Cu,2);
-y_Cu = data_Cu(index_Cu,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Cu); 
-    %Pick out each particle automatically and draw a circle around it
-    for i = 1:length(x_Cu)
-        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-%Make the new thresholded image
-PS1_Cu = imbinarize(mapPS1_Cu.counts,threshold_Cu(1)); 
-%Do the same for Ni
-index_Ni = find(data_Ni(:,1)==scans(7));
-x_Ni = data_Ni(index_Ni,2);
-y_Ni = data_Ni(index_Ni,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Ni); 
-    for i = 1:length(x_Ni)
-        x_now = (x_Ni(i)-radius):(radius/1000):(x_Ni(i)+radius);
-
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Ni(i)).^2))+y_Ni(i);
-
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-    end
-end
-threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
-%Make the new thresholded image
-PS1_Ni = imbinarize(mapPS1_Ni.counts,threshold_Ni(1)); 
-Cu_thresh = figure; 
-image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,PS1_Cu,'CDataMapping','scaled');
-axis('image'); 
-Ni_thresh = figure; 
-image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,PS1_Ni,'CDataMapping','scaled');
-axis('image'); 
-
-set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','PS1_Cu');
-set(Ni,'PaperPositionMode','auto');
-print(Ni,'-dpng','-r0','PS1_Ni');
-
-%% 26-ID-C maps
-Cu=figure;
-% image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
-image(map26_Cu.xValue,map26_Cu.yValue,map26_Cu.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 6.4]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-Ni=figure;
-% image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
-image(map26_Ni.xValue,map26_Ni.yValue,map26_Ni.counts,'CDataMapping','scaled');
-% colormap(flipud(gray));
-colormap(parula);
-axis image; 
-caxis([0 2.7]);
-set(gca, 'XTick', []);
-set(gca, 'YTick', []);
-axis off;
-
-set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','26IDC_Cu');
-set(Ni,'PaperPositionMode','auto');
-print(Ni,'-dpng','-r0','26IDC_Ni');
+print(Ni,'-dpng','-r0','ANU_T1-A1_Ni');
+savefig(Ni,'ANU_T1-A1_Ni.fig');
