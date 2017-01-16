@@ -49,9 +49,15 @@ ANU_T1_A1_Ca = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 ANU_T1_A1_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ti_2idd_0113.h5.txt';
 ANU_T1_A1_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0113.h5.txt';
 ANU_T1_A1_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0113.h5.txt';
+ANU_T1_A1_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0113.h5.txt';
 
 %ANU T1-A2
-ANU_T1_A2_elastic = '';
+ANU_T1_A2_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0123.h5.txt';
+ANU_T1_A2_Ca = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ca_2idd_0123.h5.txt';
+ANU_T1_A2_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ti_2idd_0123.h5.txt';
+ANU_T1_A2_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0123.h5.txt';
+ANU_T1_A2_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0123.h5.txt';
+ANU_T1_A2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0123.h5.txt';
 
 %ANU T1-C2
 ANU_T1_C2_elastic = ''; 
@@ -64,6 +70,15 @@ ANU_T1_C2_elastic = '';
 [mapANU_T1_A1_Ti] = processAsciiFile(ANU_T1_A1_Ti,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A1_Fe] = processAsciiFile(ANU_T1_A1_Fe,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A1_Ni] = processAsciiFile(ANU_T1_A1_Ni,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A1_Cu] = processAsciiFile(ANU_T1_A1_Cu,cutoff_flag,cutoff_min,cutoff_max);
+
+%Get all the maps for ANU T1-A2
+[mapANU_T1_A2_elastic] = processAsciiFile(ANU_T1_A2_elastic,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A2_Ca] = processAsciiFile(ANU_T1_A2_Ca,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A2_Ti] = processAsciiFile(ANU_T1_A2_Ti,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A2_Fe] = processAsciiFile(ANU_T1_A2_Fe,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A2_Ni] = processAsciiFile(ANU_T1_A2_Ni,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A2_Cu] = processAsciiFile(ANU_T1_A2_Cu,cutoff_flag,cutoff_min,cutoff_max);
 
 %% ANU T1-A1
 
@@ -136,6 +151,20 @@ set(gca, 'YTick', []);
 axis off;
 colorbar; 
 
+%Cu first
+logged = log(mapANU_T1_A1_Cu.counts);
+% logged = mapANU_T1_A1_Cu.counts;
+Cu=figure;
+image(mapANU_T1_A1_Cu.xValue,mapANU_T1_A1_Cu.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-5.5 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
 % x_Cu = data_Cu(index_Cu,2);
@@ -175,3 +204,134 @@ savefig(Ti,'ANU_T1-A1_Ti.fig');
 set(Ni,'PaperPositionMode','auto');
 print(Ni,'-dpng','-r0','ANU_T1-A1_Ni');
 savefig(Ni,'ANU_T1-A1_Ni.fig');
+set(Cu,'PaperPositionMode','auto');
+print(Cu,'-dpng','-r0','ANU_T1-A1_Ni');
+savefig(Cu,'ANU_T1-A1_Ni.fig');
+
+%% ANU T1-A2
+
+%Elastic first
+hFig=figure;
+image(mapANU_T1_A2_elastic.xValue,mapANU_T1_A2_elastic.yValue,mapANU_T1_A2_elastic.counts,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([110 155]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+set(hFig,'PaperPositionMode','auto');
+axis off;
+print('-dpng','-r0','ANU_T1-A2_elastic');
+
+%Ca first
+logged = log(mapANU_T1_A2_Ca.counts);
+% logged = mapANU_T1_A2_Ca.counts;
+Ca=figure;
+image(mapANU_T1_A2_Ca.xValue,mapANU_T1_A2_Ca.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-4 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off; 
+colorbar; 
+
+%Ti first
+logged = log(mapANU_T1_A2_Ti.counts);
+% logged = mapANU_T1_A2_Ti.counts;
+Ti=figure;
+image(mapANU_T1_A2_Ti.xValue,mapANU_T1_A2_Ti.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-6 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
+%Fe first
+logged = log(mapANU_T1_A2_Fe.counts);
+% logged = mapANU_T1_A2_Fe.counts;
+Fe=figure;
+image(mapANU_T1_A2_Fe.xValue,mapANU_T1_A2_Fe.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-6 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
+%Ni first
+logged = log(mapANU_T1_A2_Ni.counts);
+% logged = mapANU_T1_A2_Ni.counts;
+Ni=figure;
+image(mapANU_T1_A2_Ni.xValue,mapANU_T1_A2_Ni.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-5.5 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
+%Cu first
+logged = log(mapANU_T1_A2_Cu.counts);
+% logged = mapANU_T1_A2_Cu.counts;
+Cu=figure;
+image(mapANU_T1_A2_Cu.xValue,mapANU_T1_A2_Cu.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+caxis([-5.5 max(max(logged))]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
+% %Get the particle information
+% index_Cu = find(data_Cu(:,1)==scans(1));
+% x_Cu = data_Cu(index_Cu,2);
+% y_Cu = data_Cu(index_Cu,3);
+% if strcmp(circle_parts,'Y')==1
+%     %Plot the particles on top of the XRF image
+%     figure(Cu); 
+%     %Pick out each particle automatically and draw a circle around it
+%     for i = 1:length(x_Cu)
+%         x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+% 
+%         %Calculate respective y-values
+%         y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+%         y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+% 
+%         hold all; 
+%         plot(x_now,y_now,'r','LineWidth',linewidth); 
+%         hold all;
+%         plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+%     end
+% end
+% threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
+% %Make the new thresholded image
+% SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1)); 
+% Cu_thresh = figure; 
+% image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,SAL1_1_Cu,'CDataMapping','scaled');
+
+set(Ca,'PaperPositionMode','auto');
+print(Ca,'-dpng','-r0','ANU_T1-A2_Ca');
+savefig(Ca,'ANU_T1-A2_Ca.fig');
+set(Fe,'PaperPositionMode','auto');
+print(Fe,'-dpng','-r0','ANU_T1-A2_Fe');
+savefig(Fe,'ANU_T1-A2_Fe.fig');
+set(Ti,'PaperPositionMode','auto');
+print(Ti,'-dpng','-r0','ANU_T1-A2_Ti');
+savefig(Ti,'ANU_T1-A2_Ti.fig');
+set(Ni,'PaperPositionMode','auto');
+print(Ni,'-dpng','-r0','ANU_T1-A2_Ni');
+savefig(Ni,'ANU_T1-A2_Ni.fig');
+set(Cu,'PaperPositionMode','auto');
+print(Cu,'-dpng','-r0','ANU_T1-A2_Ni');
+savefig(Cu,'ANU_T1-A2_Ni.fig');
