@@ -50,6 +50,7 @@ ANU_T1_A1_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 ANU_T1_A1_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0113.h5.txt';
 ANU_T1_A1_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0113.h5.txt';
 ANU_T1_A1_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0113.h5.txt';
+ANU_T1_A1_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Mn_2idd_0113.h5.txt';
 
 %ANU T1-A2
 ANU_T1_A2_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0123.h5.txt';
@@ -58,6 +59,7 @@ ANU_T1_A2_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 ANU_T1_A2_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0123.h5.txt';
 ANU_T1_A2_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0123.h5.txt';
 ANU_T1_A2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0123.h5.txt';
+ANU_T1_A2_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Mn_2idd_0123.h5.txt';
 
 %ANU T1-C2
 ANU_T1_C2_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0126.h5.txt';
@@ -66,6 +68,7 @@ ANU_T1_C2_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 ANU_T1_C2_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0126.h5.txt';
 ANU_T1_C2_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0126.h5.txt';
 ANU_T1_C2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0126.h5.txt';
+ANU_T1_C2_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Mn_2idd_0126.h5.txt';
 
 %% After we run the above section, then we get all of the data we specified
 
@@ -76,6 +79,7 @@ ANU_T1_C2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 [mapANU_T1_A1_Fe] = processAsciiFile(ANU_T1_A1_Fe,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A1_Ni] = processAsciiFile(ANU_T1_A1_Ni,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A1_Cu] = processAsciiFile(ANU_T1_A1_Cu,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A1_Mn] = processAsciiFile(ANU_T1_A1_Mn,cutoff_flag,cutoff_min,cutoff_max);
 
 %Get all the maps for ANU T1-A2
 [mapANU_T1_A2_elastic] = processAsciiFile(ANU_T1_A2_elastic,cutoff_flag,cutoff_min,cutoff_max);
@@ -84,6 +88,7 @@ ANU_T1_C2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 [mapANU_T1_A2_Fe] = processAsciiFile(ANU_T1_A2_Fe,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A2_Ni] = processAsciiFile(ANU_T1_A2_Ni,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A2_Cu] = processAsciiFile(ANU_T1_A2_Cu,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A2_Mn] = processAsciiFile(ANU_T1_A2_Mn,cutoff_flag,cutoff_min,cutoff_max);
 
 %Get all the maps for ANU T1-C2
 [mapANU_T1_C2_elastic] = processAsciiFile(ANU_T1_C2_elastic,cutoff_flag,cutoff_min,cutoff_max);
@@ -92,6 +97,7 @@ ANU_T1_C2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 [mapANU_T1_C2_Fe] = processAsciiFile(ANU_T1_C2_Fe,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_C2_Ni] = processAsciiFile(ANU_T1_C2_Ni,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_C2_Cu] = processAsciiFile(ANU_T1_C2_Cu,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_C2_Mn] = processAsciiFile(ANU_T1_C2_Mn,cutoff_flag,cutoff_min,cutoff_max);
 
 %% ANU T1-A1
 
@@ -107,6 +113,7 @@ set(gca, 'YTick', []);
 set(hFig,'PaperPositionMode','auto');
 axis off;
 print('-dpng','-r0','ANU_T1-A1_elastic');
+savefig(hFig,'ANU_T1-A1_elastic.fig');
 
 %Ca first
 logged = log(mapANU_T1_A1_Ca.counts.*1e3);
@@ -183,6 +190,21 @@ set(gca, 'YTick', []);
 axis off;
 colorbar; 
 
+%Mn
+logged = log(mapANU_T1_A1_Mn.counts.*1e3);
+% logged = mapANU_T1_A1_Mn.counts;
+Mn=figure;
+image(mapANU_T1_A1_Mn.xValue,mapANU_T1_A1_Mn.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+% caxis([-5.5 max(max(logged))]);
+caxis([1 6]);%ng
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
 % x_Cu = data_Cu(index_Cu,2);
@@ -223,8 +245,11 @@ set(Ni,'PaperPositionMode','auto');
 print(Ni,'-dpng','-r0','ANU_T1-A1_Ni');
 savefig(Ni,'ANU_T1-A1_Ni.fig');
 set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','ANU_T1-A1_Ni');
-savefig(Cu,'ANU_T1-A1_Ni.fig');
+print(Cu,'-dpng','-r0','ANU_T1-A1_Cu');
+savefig(Cu,'ANU_T1-A1_Cu.fig');
+set(Mn,'PaperPositionMode','auto');
+print(Mn,'-dpng','-r0','ANU_T1-A1_Mn');
+savefig(Mn,'ANU_T1-A1_Mn.fig');
 
 %% ANU T1-A2
 
@@ -240,6 +265,7 @@ set(gca, 'YTick', []);
 set(hFig,'PaperPositionMode','auto');
 axis off;
 print('-dpng','-r0','ANU_T1-A2_elastic');
+savefig(hFig,'ANU_T1-A2_elastic.fig');
 
 %Ca first
 logged = log(mapANU_T1_A2_Ca.counts.*1e3);
@@ -316,6 +342,21 @@ set(gca, 'YTick', []);
 axis off;
 colorbar; 
 
+%Mn
+logged = log(mapANU_T1_A2_Mn.counts.*1e3);
+% logged = mapANU_T1_A2_Mn.counts;
+Mn=figure;
+image(mapANU_T1_A2_Mn.xValue,mapANU_T1_A2_Mn.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+% caxis([-6.5 max(max(logged))]);
+caxis([1 3]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
 % x_Cu = data_Cu(index_Cu,2);
@@ -356,8 +397,11 @@ set(Ni,'PaperPositionMode','auto');
 print(Ni,'-dpng','-r0','ANU_T1-A2_Ni');
 savefig(Ni,'ANU_T1-A2_Ni.fig');
 set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','ANU_T1-A2_Ni');
-savefig(Cu,'ANU_T1-A2_Ni.fig');
+print(Cu,'-dpng','-r0','ANU_T1-A2_Cu');
+savefig(Cu,'ANU_T1-A2_Cu.fig');
+set(Mn,'PaperPositionMode','auto');
+print(Mn,'-dpng','-r0','ANU_T1-A2_Mn');
+savefig(Mn,'ANU_T1-A2_Mn.fig');
 
 %% ANU T1-C2
 
@@ -373,6 +417,7 @@ set(gca, 'YTick', []);
 set(hFig,'PaperPositionMode','auto');
 axis off;
 print('-dpng','-r0','ANU_T1-C2_elastic');
+savefig(hFig,'ANU_T1-C2_elastic.fig');
 
 %Ca first
 logged = log(mapANU_T1_C2_Ca.counts.*1e3);
@@ -449,6 +494,21 @@ set(gca, 'YTick', []);
 axis off;
 colorbar; 
 
+%Mn
+logged = log(mapANU_T1_C2_Mn.counts.*1e3);
+% logged = mapANU_T1_C2_Mn.counts;
+Mn=figure;
+image(mapANU_T1_C2_Mn.xValue,mapANU_T1_C2_Mn.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+% caxis([-7 max(max(logged))]);
+caxis([0 3]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
 % x_Cu = data_Cu(index_Cu,2);
@@ -489,5 +549,8 @@ set(Ni,'PaperPositionMode','auto');
 print(Ni,'-dpng','-r0','ANU_T1-C2_Ni');
 savefig(Ni,'ANU_T1-C2_Ni.fig');
 set(Cu,'PaperPositionMode','auto');
-print(Cu,'-dpng','-r0','ANU_T1-C2_Ni');
-savefig(Cu,'ANU_T1-C2_Ni.fig');
+print(Cu,'-dpng','-r0','ANU_T1-C2_Cu');
+savefig(Cu,'ANU_T1-C2_Cu.fig');
+set(Mn,'PaperPositionMode','auto');
+print(Mn,'-dpng','-r0','ANU_T1-C2_Mn');
+savefig(Mn,'ANU_T1-C2_Mn.fig');
