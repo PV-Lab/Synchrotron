@@ -146,7 +146,7 @@ caxis([0 2]); %log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off; 
-colorbar;
+% colorbar;
 
 %Ni next
 logged = log(mapSAL1_1_Ni.counts.*1e3);
@@ -165,7 +165,7 @@ caxis([0 3]);%log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
-colorbar;
+% colorbar;
 
 %Elastic next
 logged = log(mapSAL1_1_elastic.counts);
@@ -335,7 +335,7 @@ caxis([0 2]);%log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
-colorbar;
+% colorbar;
 
 %Ni next
 logged = log(mapSAH1_1_Ni.counts.*1e3);
@@ -354,7 +354,7 @@ caxis([0 3]);%log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
-colorbar; 
+% colorbar; 
 
 %elastic next
 % logged = log(mapSAH1_1_elastic.counts);
@@ -522,7 +522,7 @@ caxis([1 7]);%log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
-colorbar; 
+% colorbar; 
 
 hFig=figure; 
 logged = log(mapS1_2_Cu.counts.*1e3);
@@ -553,7 +553,7 @@ caxis([1 6]);%log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
-colorbar; 
+% colorbar; 
 
 hFig = figure; 
 logged = log(mapS1_2_Ni.counts.*1e3);
@@ -723,11 +723,11 @@ image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 max(max(logged))]);
+caxis([0 2.5]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
-colorbar; 
+% colorbar; 
 
 %Ni next
 logged = log(mapPS1_Ni.counts.*1e3);
@@ -742,7 +742,7 @@ caxis([0.5 2.5]);%log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
-colorbar;
+% colorbar;
 
 %elastic next
 % logged = log(mapPS1_elastic.counts);
@@ -819,23 +819,27 @@ print(Ni,'-dpng','-r0','PS1_Ni');
 
 %% 26-ID-C maps
 Cu=figure;
-% image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
-image(map26_Cu.xValue,map26_Cu.yValue,map26_Cu.counts,'CDataMapping','scaled');
+logged = log(map26_Cu.counts.*1e-1.*1e3);
+image(map26_Cu.xValue,map26_Cu.yValue,logged,'CDataMapping','scaled');
+% image(map26_Cu.xValue,map26_Cu.yValue,map26_Cu.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
-axis image; 
-caxis([0 6.4]);
+axis image;
+caxis([1 7]);
+% caxis([1 7]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
 
 Ni=figure;
-% image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
-image(map26_Ni.xValue,map26_Ni.yValue,map26_Ni.counts,'CDataMapping','scaled');
+logged = log(map26_Ni.counts.*1e-1.*1e3); 
+image(map26_Ni.xValue,map26_Ni.yValue,logged,'CDataMapping','scaled');
+% image(map26_Ni.xValue,map26_Ni.yValue,map26_Ni.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([0 2.7]);
+% caxis([0 2.7]);
+caxis([0 6.5]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
