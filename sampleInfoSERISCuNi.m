@@ -42,10 +42,10 @@ SOFTWARE.
 % Samples = {'GB','Grain'};
 % hiResScans = {'0206','0213'};
 
-Samples = {'PS1'}; 
-hiResScans = {'0102'}; 
+Samples = {'A1','A2','C2'}; 
+hiResScans = {'0113','0123','0126'}; 
 
-channels = {'Si','Cu','Ni','s_e'};
+channels = {'Si','Fe','s_e'};
 
 
 %% END
