@@ -25,13 +25,12 @@ SOFTWARE.
 clear all; close all; clc;
 
 %Read in x,y particle data for each sigma 
-% filename = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\particle_details.xlsx';
+filename = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\particle details.xlsx';
 % 
-% data_Cu = xlsread(filename,'Cu'); 
-% data_Ni = xlsread(filename,'Ni'); 
+data_Fe = xlsread(filename,'precipitate locations'); 
 % %scan numbers in order of our analysis
 % scans = [189,190,204,205,206,213,102];
-circle_parts = 'N'; 
+circle_parts = 'Y'; 
 
 %Make plots for publication. 
 radius = 0.00075; 
@@ -42,6 +41,11 @@ cutOff = 99;
 cutoff_flag = 0;
 cutoff_min = 88;
 cutoff_max = 95;
+
+%Threshold noise limit values
+threshold_Fe_A1 = 0.093244284362155; 
+threshold_Fe_A2 = 0.007541577476058;
+threshold_Fe_C2 = 0.007278278987801; 
 
 %ANU T1-A1
 ANU_T1_A1_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0113.h5.txt';
@@ -207,37 +211,40 @@ colorbar;
 
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
-% x_Cu = data_Cu(index_Cu,2);
-% y_Cu = data_Cu(index_Cu,3);
-% if strcmp(circle_parts,'Y')==1
-%     %Plot the particles on top of the XRF image
-%     figure(Cu); 
-%     %Pick out each particle automatically and draw a circle around it
-%     for i = 1:length(x_Cu)
-%         x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-% 
-%         %Calculate respective y-values
-%         y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-%         y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-% 
-%         hold all; 
-%         plot(x_now,y_now,'r','LineWidth',linewidth); 
-%         hold all;
-%         plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-%     end
-% end
-% threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-% %Make the new thresholded image
-% SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1)); 
-% Cu_thresh = figure; 
-% image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,SAL1_1_Cu,'CDataMapping','scaled');
+x_Fe = data_Fe(:,1);
+y_Fe = data_Fe(:,2);
+if strcmp(circle_parts,'Y')==1
+    %Plot the particles on top of the XRF image
+    figure(Fe); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Fe)
+        x_now = (x_Fe(i)-radius):(radius/1000):(x_Fe(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Fe(i)).^2))+y_Fe(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Fe(i)).^2))+y_Fe(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
+% threshold_Fe = data_Cu(index_Cu,8); %Choose the noise limit
+%Make the new thresholded image
+A1_Fe_thresh = imbinarize(mapANU_T1_A1_Fe.counts,threshold_Fe_A1); 
+Fe_thresh = figure; 
+image(mapANU_T1_A1_Fe.xValue,mapANU_T1_A1_Fe.yValue,A1_Fe_thresh,'CDataMapping','scaled');
+axis image; 
 
 set(Ca,'PaperPositionMode','auto');
 print(Ca,'-dpng','-r0','ANU_T1-A1_Ca');
 savefig(Ca,'ANU_T1-A1_Ca.fig');
 set(Fe,'PaperPositionMode','auto');
-print(Fe,'-dpng','-r0','ANU_T1-A1_Fe');
-savefig(Fe,'ANU_T1-A1_Fe.fig');
+% print(Fe,'-dpng','-r0','ANU_T1-A1_Fe');
+% savefig(Fe,'ANU_T1-A1_Fe.fig');
+print(Fe,'-dpng','-r0','ANU_T1-A1_Fe_particles');
+savefig(Fe,'ANU_T1-A1_Fe_particles.fig');
 set(Ti,'PaperPositionMode','auto');
 print(Ti,'-dpng','-r0','ANU_T1-A1_Ti');
 savefig(Ti,'ANU_T1-A1_Ti.fig');
@@ -250,7 +257,9 @@ savefig(Cu,'ANU_T1-A1_Cu.fig');
 set(Mn,'PaperPositionMode','auto');
 print(Mn,'-dpng','-r0','ANU_T1-A1_Mn');
 savefig(Mn,'ANU_T1-A1_Mn.fig');
-
+set(Fe_thresh,'PaperPositionMode','auto');
+print(Fe_thresh,'-dpng','-r0','ANU_T1-A1_Fe_thresh'); 
+savefig(Fe_thresh,'ANU_T1-A1_Fe_thresh.fig');
 %% ANU T1-A2
 
 %Elastic first
@@ -359,37 +368,40 @@ colorbar;
 
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
-% x_Cu = data_Cu(index_Cu,2);
-% y_Cu = data_Cu(index_Cu,3);
-% if strcmp(circle_parts,'Y')==1
-%     %Plot the particles on top of the XRF image
-%     figure(Cu); 
-%     %Pick out each particle automatically and draw a circle around it
-%     for i = 1:length(x_Cu)
-%         x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-% 
-%         %Calculate respective y-values
-%         y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-%         y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-% 
-%         hold all; 
-%         plot(x_now,y_now,'r','LineWidth',linewidth); 
-%         hold all;
-%         plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-%     end
-% end
+x_Fe = data_Fe(:,5);
+y_Fe = data_Fe(:,6);
+if strcmp(circle_parts,'Y')==1
+    %Plot the particles on top of the XRF image
+    figure(Fe); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Fe)
+        x_now = (x_Fe(i)-radius):(radius/1000):(x_Fe(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Fe(i)).^2))+y_Fe(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Fe(i)).^2))+y_Fe(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 % threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-% %Make the new thresholded image
-% SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1)); 
-% Cu_thresh = figure; 
-% image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,SAL1_1_Cu,'CDataMapping','scaled');
+%Make the new thresholded image
+A2_Fe_thresh = imbinarize(mapANU_T1_A2_Fe.counts,threshold_Fe_A2); 
+Fe_thresh = figure; 
+image(mapANU_T1_A2_Fe.xValue,mapANU_T1_A2_Fe.yValue,A2_Fe_thresh,'CDataMapping','scaled');
+axis image; 
 
 set(Ca,'PaperPositionMode','auto');
 print(Ca,'-dpng','-r0','ANU_T1-A2_Ca');
 savefig(Ca,'ANU_T1-A2_Ca.fig');
 set(Fe,'PaperPositionMode','auto');
-print(Fe,'-dpng','-r0','ANU_T1-A2_Fe');
-savefig(Fe,'ANU_T1-A2_Fe.fig');
+% print(Fe,'-dpng','-r0','ANU_T1-A2_Fe');
+% savefig(Fe,'ANU_T1-A2_Fe.fig');
+print(Fe,'-dpng','-r0','ANU_T1-A2_Fe_particles');
+savefig(Fe,'ANU_T1-A2_Fe_particles.fig');
 set(Ti,'PaperPositionMode','auto');
 print(Ti,'-dpng','-r0','ANU_T1-A2_Ti');
 savefig(Ti,'ANU_T1-A2_Ti.fig');
@@ -402,6 +414,9 @@ savefig(Cu,'ANU_T1-A2_Cu.fig');
 set(Mn,'PaperPositionMode','auto');
 print(Mn,'-dpng','-r0','ANU_T1-A2_Mn');
 savefig(Mn,'ANU_T1-A2_Mn.fig');
+set(Fe_thresh,'PaperPositionMode','auto');
+print(Fe_thresh,'-dpng','-r0','ANU_T1-A2_Fe_thresh'); 
+savefig(Fe_thresh,'ANU_T1-A2_Fe_thresh.fig');
 
 %% ANU T1-C2
 
@@ -511,37 +526,40 @@ colorbar;
 
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
-% x_Cu = data_Cu(index_Cu,2);
-% y_Cu = data_Cu(index_Cu,3);
-% if strcmp(circle_parts,'Y')==1
-%     %Plot the particles on top of the XRF image
-%     figure(Cu); 
-%     %Pick out each particle automatically and draw a circle around it
-%     for i = 1:length(x_Cu)
-%         x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
-% 
-%         %Calculate respective y-values
-%         y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-%         y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
-% 
-%         hold all; 
-%         plot(x_now,y_now,'r','LineWidth',linewidth); 
-%         hold all;
-%         plot(x_now,y_now_opp,'r','LineWidth',linewidth);
-%     end
-% end
+x_Fe = data_Fe(:,9);
+y_Fe = data_Fe(:,10);
+if strcmp(circle_parts,'Y')==1
+    %Plot the particles on top of the XRF image
+    figure(Fe); 
+    %Pick out each particle automatically and draw a circle around it
+    for i = 1:length(x_Fe)
+        x_now = (x_Fe(i)-radius):(radius/1000):(x_Fe(i)+radius);
+
+        %Calculate respective y-values
+        y_now = sqrt((radius^2)-((x_now-x_Fe(i)).^2))+y_Fe(i); 
+        y_now_opp = -sqrt((radius^2)-((x_now-x_Fe(i)).^2))+y_Fe(i);
+
+        hold all; 
+        plot(x_now,y_now,'r','LineWidth',linewidth); 
+        hold all;
+        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+    end
+end
 % threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-% %Make the new thresholded image
-% SAL1_1_Cu = imbinarize(mapSAL1_1_Cu.counts,threshold_Cu(1)); 
-% Cu_thresh = figure; 
-% image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,SAL1_1_Cu,'CDataMapping','scaled');
+%Make the new thresholded image
+C2_Fe_thresh = imbinarize(mapANU_T1_C2_Fe.counts,threshold_Fe_C2); 
+Fe_thresh = figure; 
+image(mapANU_T1_C2_Fe.xValue,mapANU_T1_C2_Fe.yValue,C2_Fe_thresh,'CDataMapping','scaled');
+axis image; 
 
 set(Ca,'PaperPositionMode','auto');
 print(Ca,'-dpng','-r0','ANU_T1-C2_Ca');
 savefig(Ca,'ANU_T1-C2_Ca.fig');
 set(Fe,'PaperPositionMode','auto');
-print(Fe,'-dpng','-r0','ANU_T1-C2_Fe');
-savefig(Fe,'ANU_T1-C2_Fe.fig');
+% print(Fe,'-dpng','-r0','ANU_T1-C2_Fe');
+% savefig(Fe,'ANU_T1-C2_Fe.fig');
+print(Fe,'-dpng','-r0','ANU_T1-C2_Fe_particles');
+savefig(Fe,'ANU_T1-C2_Fe_particles.fig');
 set(Ti,'PaperPositionMode','auto');
 print(Ti,'-dpng','-r0','ANU_T1-C2_Ti');
 savefig(Ti,'ANU_T1-C2_Ti.fig');
@@ -554,3 +572,6 @@ savefig(Cu,'ANU_T1-C2_Cu.fig');
 set(Mn,'PaperPositionMode','auto');
 print(Mn,'-dpng','-r0','ANU_T1-C2_Mn');
 savefig(Mn,'ANU_T1-C2_Mn.fig');
+set(Fe_thresh,'PaperPositionMode','auto');
+print(Fe_thresh,'-dpng','-r0','ANU_T1-C2_Fe_thresh'); 
+savefig(Fe_thresh,'ANU_T1-C2_Fe_thresh.fig');
