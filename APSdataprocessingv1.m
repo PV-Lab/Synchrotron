@@ -37,9 +37,9 @@ SOFTWARE.
 %%%%
 
 %% Choose which samples to process and which channels to load
-    sampleInfoSERISCuNi;
+    sampleInfoUCF_DW;
 
-    channelsToLoad = {'Fe','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
+    channelsToLoad = {'Fe','Cu','Cr','Ni','Ca','Ti','Sn_L','Pb_L','Al','Zn','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
     
     %%
 if ~exist('fromMaps','var')
