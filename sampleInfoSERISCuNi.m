@@ -45,7 +45,7 @@ SOFTWARE.
 Samples = {'A1','A2','C2'}; 
 hiResScans = {'0113','0123','0126'}; 
 
-channels = {'Si','Fe','s_e'};
+channels = {'Si','Ba_L','s_e'};
 
 
 %% END

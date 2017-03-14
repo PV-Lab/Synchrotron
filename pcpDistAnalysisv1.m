@@ -52,7 +52,7 @@ global pon xLocation yLocation
 
 % define defaults at the beginning of the code so that you don't need to scroll
 % way down in case you want to change something or if the help is incomplete
-options = struct('channel','Fe','scaling','on','background','removed','fitorder','1','manualgbline','n','plots','on','plotScale','linear'); %,'secondparameter',magic(3));
+options = struct('channel','Ba_L','scaling','on','background','removed','fitorder','1','manualgbline','n','plots','on','plotScale','linear'); %,'secondparameter',magic(3));
 
 %scaling - on/off toggles the scaling of cts with depth from GB
 %backgrond - 

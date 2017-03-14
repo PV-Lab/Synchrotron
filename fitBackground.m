@@ -69,7 +69,7 @@ global pon
     map.noiseCI   = paramCIs; %confidence intervals around the fitted estimates
 
     %define noiseLimit (in counts) of the map according to the number of sigma input
-    map.noiseLimit = nSigma*map.noiseSd+map.noiseMean; 
+    map.noiseLimit = nSigma*map.noiseSd+map.noiseMean;
 
     %create probability density function with domain set by histogram
     %binning for chi2 test later
