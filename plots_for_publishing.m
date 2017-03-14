@@ -23,14 +23,15 @@ SOFTWARE.
 %}
 
 clear all; close all; clc;
+dir = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\Quantified from Barry\output'; 
 
 %Read in x,y particle data for each sigma 
-filename = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\particle details.xlsx';
+filename = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\Quantified from Barry\MDL_calcs.xlsx';
 % 
 data_Fe = xlsread(filename,'precipitate locations'); 
 % %scan numbers in order of our analysis
 % scans = [189,190,204,205,206,213,102];
-circle_parts = 'Y'; 
+circle_parts = 'N'; 
 
 %Make plots for publication. 
 radius = 0.00075; 
@@ -43,36 +44,39 @@ cutoff_min = 88;
 cutoff_max = 95;
 
 %Threshold noise limit values
-threshold_Fe_A1 = 0.093244284362155; 
-threshold_Fe_A2 = 0.007541577476058;
-threshold_Fe_C2 = 0.007278278987801; 
+threshold_Fe_A1 = 0.110356903; 
+threshold_Fe_A2 = 0.016164475;
+threshold_Fe_C2 = 0.015701956; 
 
 %ANU T1-A1
-ANU_T1_A1_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0113.h5.txt';
-ANU_T1_A1_Ca = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ca_2idd_0113.h5.txt';
-ANU_T1_A1_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ti_2idd_0113.h5.txt';
-ANU_T1_A1_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0113.h5.txt';
-ANU_T1_A1_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0113.h5.txt';
-ANU_T1_A1_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0113.h5.txt';
-ANU_T1_A1_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Mn_2idd_0113.h5.txt';
+ANU_T1_A1_elastic = [dir '\ASCII_Si_2idd_0113.h5.txt'];
+ANU_T1_A1_Ca = [dir '\ASCII_Ca_2idd_0113.h5.txt'];
+ANU_T1_A1_Ti = [dir '\ASCII_Ti_2idd_0113.h5.txt'];
+ANU_T1_A1_Fe = [dir '\ASCII_Fe_2idd_0113.h5.txt'];
+ANU_T1_A1_Ni = [dir '\ASCII_Ni_2idd_0113.h5.txt'];
+ANU_T1_A1_Cu = [dir '\ASCII_Cu_2idd_0113.h5.txt'];
+ANU_T1_A1_Mn = [dir '\ASCII_Mn_2idd_0113.h5.txt'];
+ANU_T1_A1_Ba = [dir '\ASCII_Ba_L_2idd_0113.h5.txt'];
 
 %ANU T1-A2
-ANU_T1_A2_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0123.h5.txt';
-ANU_T1_A2_Ca = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ca_2idd_0123.h5.txt';
-ANU_T1_A2_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ti_2idd_0123.h5.txt';
-ANU_T1_A2_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0123.h5.txt';
-ANU_T1_A2_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0123.h5.txt';
-ANU_T1_A2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0123.h5.txt';
-ANU_T1_A2_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Mn_2idd_0123.h5.txt';
+ANU_T1_A2_elastic = [dir '\ASCII_Si_2idd_0123.h5.txt'];
+ANU_T1_A2_Ca = [dir '\ASCII_Ca_2idd_0123.h5.txt'];
+ANU_T1_A2_Ti = [dir '\ASCII_Ti_2idd_0123.h5.txt'];
+ANU_T1_A2_Fe = [dir '\ASCII_Fe_2idd_0123.h5.txt'];
+ANU_T1_A2_Ni = [dir '\ASCII_Ni_2idd_0123.h5.txt'];
+ANU_T1_A2_Cu = [dir '\ASCII_Cu_2idd_0123.h5.txt'];
+ANU_T1_A2_Mn = [dir '\ASCII_Mn_2idd_0123.h5.txt'];
+ANU_T1_A2_Ba = [dir '\ASCII_Ba_L_2idd_0123.h5.txt'];
 
 %ANU T1-C2
-ANU_T1_C2_elastic = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Si_2idd_0126.h5.txt';
-ANU_T1_C2_Ca = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ca_2idd_0126.h5.txt';
-ANU_T1_C2_Ti = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ti_2idd_0126.h5.txt';
-ANU_T1_C2_Fe = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Fe_2idd_0126.h5.txt';
-ANU_T1_C2_Ni = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Ni_2idd_0126.h5.txt';
-ANU_T1_C2_Cu = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Cu_2idd_0126.h5.txt';
-ANU_T1_C2_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCII_Mn_2idd_0126.h5.txt';
+ANU_T1_C2_elastic = [dir '\ASCII_Si_2idd_0126.h5.txt'];
+ANU_T1_C2_Ca = [dir '\ASCII_Ca_2idd_0126.h5.txt'];
+ANU_T1_C2_Ti = [dir '\ASCII_Ti_2idd_0126.h5.txt'];
+ANU_T1_C2_Fe = [dir '\ASCII_Fe_2idd_0126.h5.txt'];
+ANU_T1_C2_Ni = [dir '\ASCII_Ni_2idd_0126.h5.txt'];
+ANU_T1_C2_Cu = [dir '\ASCII_Cu_2idd_0126.h5.txt'];
+ANU_T1_C2_Mn = [dir '\ASCII_Mn_2idd_0126.h5.txt'];
+ANU_T1_C2_Ba = [dir '\ASCII_Ba_L_2idd_0126.h5.txt'];
 
 %% After we run the above section, then we get all of the data we specified
 
@@ -84,6 +88,7 @@ ANU_T1_C2_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 [mapANU_T1_A1_Ni] = processAsciiFile(ANU_T1_A1_Ni,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A1_Cu] = processAsciiFile(ANU_T1_A1_Cu,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A1_Mn] = processAsciiFile(ANU_T1_A1_Mn,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A1_Ba] = processAsciiFile(ANU_T1_A1_Ba,cutoff_flag,cutoff_min,cutoff_max);
 
 %Get all the maps for ANU T1-A2
 [mapANU_T1_A2_elastic] = processAsciiFile(ANU_T1_A2_elastic,cutoff_flag,cutoff_min,cutoff_max);
@@ -93,6 +98,7 @@ ANU_T1_C2_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 [mapANU_T1_A2_Ni] = processAsciiFile(ANU_T1_A2_Ni,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A2_Cu] = processAsciiFile(ANU_T1_A2_Cu,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_A2_Mn] = processAsciiFile(ANU_T1_A2_Mn,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_A2_Ba] = processAsciiFile(ANU_T1_A2_Ba,cutoff_flag,cutoff_min,cutoff_max);
 
 %Get all the maps for ANU T1-C2
 [mapANU_T1_C2_elastic] = processAsciiFile(ANU_T1_C2_elastic,cutoff_flag,cutoff_min,cutoff_max);
@@ -102,6 +108,7 @@ ANU_T1_C2_Mn = 'C:\Users\Mallory Jensen\Documents\Synchrotron\ANU T1\output\ASCI
 [mapANU_T1_C2_Ni] = processAsciiFile(ANU_T1_C2_Ni,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_C2_Cu] = processAsciiFile(ANU_T1_C2_Cu,cutoff_flag,cutoff_min,cutoff_max);
 [mapANU_T1_C2_Mn] = processAsciiFile(ANU_T1_C2_Mn,cutoff_flag,cutoff_min,cutoff_max);
+[mapANU_T1_C2_Ba] = processAsciiFile(ANU_T1_C2_Ba,cutoff_flag,cutoff_min,cutoff_max);
 
 %% ANU T1-A1
 
@@ -209,6 +216,21 @@ set(gca, 'YTick', []);
 axis off;
 colorbar; 
 
+%Ba
+logged = log(mapANU_T1_A1_Ba.counts.*1e3);
+% logged = mapANU_T1_A1_Ba.counts;
+Ba=figure;
+image(mapANU_T1_A1_Ba.xValue,mapANU_T1_A1_Ba.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+% caxis([-5.5 max(max(logged))]);
+caxis([3 10.5]);%ng
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
 x_Fe = data_Fe(:,1);
@@ -241,10 +263,10 @@ set(Ca,'PaperPositionMode','auto');
 print(Ca,'-dpng','-r0','ANU_T1-A1_Ca');
 savefig(Ca,'ANU_T1-A1_Ca.fig');
 set(Fe,'PaperPositionMode','auto');
-% print(Fe,'-dpng','-r0','ANU_T1-A1_Fe');
-% savefig(Fe,'ANU_T1-A1_Fe.fig');
-print(Fe,'-dpng','-r0','ANU_T1-A1_Fe_particles');
-savefig(Fe,'ANU_T1-A1_Fe_particles.fig');
+print(Fe,'-dpng','-r0','ANU_T1-A1_Fe');
+savefig(Fe,'ANU_T1-A1_Fe.fig');
+% print(Fe,'-dpng','-r0','ANU_T1-A1_Fe_particles');
+% savefig(Fe,'ANU_T1-A1_Fe_particles.fig');
 set(Ti,'PaperPositionMode','auto');
 print(Ti,'-dpng','-r0','ANU_T1-A1_Ti');
 savefig(Ti,'ANU_T1-A1_Ti.fig');
@@ -257,6 +279,9 @@ savefig(Cu,'ANU_T1-A1_Cu.fig');
 set(Mn,'PaperPositionMode','auto');
 print(Mn,'-dpng','-r0','ANU_T1-A1_Mn');
 savefig(Mn,'ANU_T1-A1_Mn.fig');
+set(Ba,'PaperPositionMode','auto');
+print(Ba,'-dpng','-r0','ANU_T1-A1_Ba');
+savefig(Ba,'ANU_T1-A1_Ba.fig');
 set(Fe_thresh,'PaperPositionMode','auto');
 print(Fe_thresh,'-dpng','-r0','ANU_T1-A1_Fe_thresh'); 
 savefig(Fe_thresh,'ANU_T1-A1_Fe_thresh.fig');
@@ -366,6 +391,21 @@ set(gca, 'YTick', []);
 axis off;
 colorbar; 
 
+%Ba
+logged = log(mapANU_T1_A2_Ba.counts.*1e3);
+% logged = mapANU_T1_A2_Ba.counts;
+Ba=figure;
+image(mapANU_T1_A2_Ba.xValue,mapANU_T1_A2_Ba.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+% caxis([-6.5 max(max(logged))]);
+caxis([2 7]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar;
+
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
 x_Fe = data_Fe(:,5);
@@ -398,10 +438,10 @@ set(Ca,'PaperPositionMode','auto');
 print(Ca,'-dpng','-r0','ANU_T1-A2_Ca');
 savefig(Ca,'ANU_T1-A2_Ca.fig');
 set(Fe,'PaperPositionMode','auto');
-% print(Fe,'-dpng','-r0','ANU_T1-A2_Fe');
-% savefig(Fe,'ANU_T1-A2_Fe.fig');
-print(Fe,'-dpng','-r0','ANU_T1-A2_Fe_particles');
-savefig(Fe,'ANU_T1-A2_Fe_particles.fig');
+print(Fe,'-dpng','-r0','ANU_T1-A2_Fe');
+savefig(Fe,'ANU_T1-A2_Fe.fig');
+% print(Fe,'-dpng','-r0','ANU_T1-A2_Fe_particles');
+% savefig(Fe,'ANU_T1-A2_Fe_particles.fig');
 set(Ti,'PaperPositionMode','auto');
 print(Ti,'-dpng','-r0','ANU_T1-A2_Ti');
 savefig(Ti,'ANU_T1-A2_Ti.fig');
@@ -414,6 +454,9 @@ savefig(Cu,'ANU_T1-A2_Cu.fig');
 set(Mn,'PaperPositionMode','auto');
 print(Mn,'-dpng','-r0','ANU_T1-A2_Mn');
 savefig(Mn,'ANU_T1-A2_Mn.fig');
+set(Ba,'PaperPositionMode','auto');
+print(Ba,'-dpng','-r0','ANU_T1-A2_Ba');
+savefig(Ba,'ANU_T1-A2_Ba.fig');
 set(Fe_thresh,'PaperPositionMode','auto');
 print(Fe_thresh,'-dpng','-r0','ANU_T1-A2_Fe_thresh'); 
 savefig(Fe_thresh,'ANU_T1-A2_Fe_thresh.fig');
@@ -524,6 +567,21 @@ set(gca, 'YTick', []);
 axis off;
 colorbar; 
 
+%Ba
+logged = log(mapANU_T1_C2_Ba.counts.*1e3);
+% logged = mapANU_T1_C2_Ba.counts;
+Ba=figure;
+image(mapANU_T1_C2_Ba.xValue,mapANU_T1_C2_Ba.yValue,logged,'CDataMapping','scaled');
+% colormap(flipud(gray));
+colormap(parula);
+axis image; 
+% caxis([-7 max(max(logged))]);
+caxis([2 6]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+axis off;
+colorbar; 
+
 % %Get the particle information
 % index_Cu = find(data_Cu(:,1)==scans(1));
 x_Fe = data_Fe(:,9);
@@ -556,10 +614,10 @@ set(Ca,'PaperPositionMode','auto');
 print(Ca,'-dpng','-r0','ANU_T1-C2_Ca');
 savefig(Ca,'ANU_T1-C2_Ca.fig');
 set(Fe,'PaperPositionMode','auto');
-% print(Fe,'-dpng','-r0','ANU_T1-C2_Fe');
-% savefig(Fe,'ANU_T1-C2_Fe.fig');
-print(Fe,'-dpng','-r0','ANU_T1-C2_Fe_particles');
-savefig(Fe,'ANU_T1-C2_Fe_particles.fig');
+print(Fe,'-dpng','-r0','ANU_T1-C2_Fe');
+savefig(Fe,'ANU_T1-C2_Fe.fig');
+% print(Fe,'-dpng','-r0','ANU_T1-C2_Fe_particles');
+% savefig(Fe,'ANU_T1-C2_Fe_particles.fig');
 set(Ti,'PaperPositionMode','auto');
 print(Ti,'-dpng','-r0','ANU_T1-C2_Ti');
 savefig(Ti,'ANU_T1-C2_Ti.fig');
@@ -572,6 +630,9 @@ savefig(Cu,'ANU_T1-C2_Cu.fig');
 set(Mn,'PaperPositionMode','auto');
 print(Mn,'-dpng','-r0','ANU_T1-C2_Mn');
 savefig(Mn,'ANU_T1-C2_Mn.fig');
+set(Ba,'PaperPositionMode','auto');
+print(Ba,'-dpng','-r0','ANU_T1-C2_Ba');
+savefig(Ba,'ANU_T1-C2_Ba.fig');
 set(Fe_thresh,'PaperPositionMode','auto');
 print(Fe_thresh,'-dpng','-r0','ANU_T1-C2_Fe_thresh'); 
 savefig(Fe_thresh,'ANU_T1-C2_Fe_thresh.fig');
