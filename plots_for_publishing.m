@@ -49,7 +49,7 @@ threshold_Ti_dw = data(7,5);
 threshold_Al_dw = data(1,5); 
 threshold_Zn_dw = data(8,5); 
 threshold_Pb_dw = data(10,5); 
-threshold_Zn_dw = data(11,5);
+threshold_Sn_dw = data(11,5);
 
 
 %UCF low tau
