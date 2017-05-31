@@ -50,8 +50,12 @@ SOFTWARE.
     
     %Calculate information depth
 %     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_5414));
-%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_8048));
-    infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_7478));
+
+    %This is for Cu
+    infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_8048));
+
+    %This is for Ni
+%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_7478));
     
     
         
@@ -92,8 +96,8 @@ SOFTWARE.
     
     V_CuSi2_unitcell = (Cu_a^2)*Cu_c*sin(60*2*pi/360)/Cu_Z; %cm^3, hexagonal
     
-%     wtCu = 63.546; %g/mol
-    wtCu = 58.6934; %g/mol, this is actually Ni
+    wtCu = 63.546; %g/mol
+%     wtCu = 58.6934; %g/mol, this is actually Ni
     wtSi = 28.0855; %g/mol
     wtCuSi2 = wtCu+(2*wtSi); %g/mol
     
@@ -101,7 +105,7 @@ SOFTWARE.
     
     
     %sensitivity limit
-    spotSize = 0.2; %um diameter
+    spotSize = 0.21; %um diameter
     spotArea = pi/4*spotSize^2;
     
     detLimit     = 1e14; %atoms/cm2/sec
