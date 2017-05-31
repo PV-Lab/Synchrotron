@@ -25,7 +25,7 @@ SOFTWARE.
 clear all; close all; clc;
 
 %Read in x,y particle data for each sigma 
-filename = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\particle_details.xlsx';
+filename = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\scan_particle_summary.xlsx';
 
 data_Cu = xlsread(filename,'Cu'); 
 data_Ni = xlsread(filename,'Ni'); 
@@ -44,31 +44,31 @@ cutoff_min = 88;
 cutoff_max = 95;
 
 %SAL-1 (scans 189, 190)
-Cu_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0189.h5.txt'; 
-Cu_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0190.h5.txt'; 
-Ni_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0189.h5.txt'; 
-Ni_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0190.h5.txt'; 
-elastic_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0189.h5.txt'; 
-elastic_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0190.h5.txt'; 
-Cu_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0191.h5.txt';
-Ni_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0191.h5.txt';
+Cu_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0189.h5.txt'; 
+Cu_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0190.h5.txt'; 
+Ni_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0189.h5.txt'; 
+Ni_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0190.h5.txt'; 
+elastic_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0189.h5.txt'; 
+elastic_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0190.h5.txt'; 
+Cu_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0191.h5.txt';
+Ni_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0191.h5.txt';
 
 %SAH-1 (scans 204, 205)
-Cu_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0204.h5.txt'; 
-Cu_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0205.h5.txt'; 
-Ni_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0204.h5.txt'; 
-Ni_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0205.h5.txt'; 
-elastic_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0204.h5.txt'; 
-elastic_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_s_e_2idd_0205.h5.txt'; 
-Cu_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Cu_2idd_0206.h5.txt';
-Ni_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\with Filt 1\output\ASCII_Ni_2idd_0206.h5.txt';
+Cu_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0204.h5.txt'; 
+Cu_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0205.h5.txt'; 
+Ni_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0204.h5.txt'; 
+Ni_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0205.h5.txt'; 
+elastic_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0204.h5.txt'; 
+elastic_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0205.h5.txt'; 
+Cu_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0206.h5.txt';
+Ni_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0206.h5.txt';
 
 %S-1 as-grown (2016c2 scans 206 for Cu/Ni, scan 213 for Ti)
-Cu_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0206.h5.txt'; 
+Cu_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\new analysis 2016c2 as-grown\output\ASCII_Cu_2idd_0206.h5.txt'; 
 Cu_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0213.h5.txt'; 
-Ni_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0206.h5.txt'; 
+Ni_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\new analysis 2016c2 as-grown\output\ASCII_Ni_2idd_0206.h5.txt'; 
 Ni_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0213.h5.txt'; 
-elastic_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0206.h5.txt'; 
+elastic_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\new analysis 2016c2 as-grown\output\ASCII_s_e_2idd_0206.h5.txt'; 
 elastic_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0213.h5.txt'; 
 Ti_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0206.h5.txt'; 
 Ti_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0213.h5.txt'; 
@@ -76,9 +76,9 @@ Cu_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c
 Ni_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0207.h5.txt';
 
 %Phosphorous diffusion PS1 (2016c3 scan 102)
-Cu_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0102.h5.txt'; 
-Ni_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0102.h5.txt'; 
-elastic_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_s_e_2idd_0102.h5.txt'; 
+Cu_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0102.h5.txt'; 
+Ni_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0102.h5.txt'; 
+elastic_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0102.h5.txt'; 
 
 %26-ID-C data
 Cu_26 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\26-ID-C 2016c3\output\ASCII_Cu_26idbSOFT_0153.h5.txt';
@@ -177,7 +177,7 @@ image(mapSAL1_2_elastic.xValue,mapSAL1_2_elastic.yValue,mapSAL1_2_elastic.counts
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([1060 1665]);
+caxis([2500 6200]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 set(hFig,'PaperPositionMode','auto');
@@ -240,24 +240,30 @@ image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,SAL1_1_Ni,'CDataMapping','scaled')
 index_Cu = find(data_Cu(:,1)==scans(2));
 x_Cu = data_Cu(index_Cu,2);
 y_Cu = data_Cu(index_Cu,3);
-if strcmp(circle_parts,'Y')==1
-    figure(Cu); 
-    for i = 1:length(x_Cu)
-        x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
+if isempty(x_Cu) ~= 1
+    if strcmp(circle_parts,'Y')==1
+        figure(Cu); 
+        for i = 1:length(x_Cu)
+            x_now = (x_Cu(i)-radius):(radius/1000):(x_Cu(i)+radius);
 
-        %Calculate respective y-values
-        y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
-        y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
+            %Calculate respective y-values
+            y_now = sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i); 
+            y_now_opp = -sqrt((radius^2)-((x_now-x_Cu(i)).^2))+y_Cu(i);
 
-        hold all; 
-        plot(x_now,y_now,'r','LineWidth',linewidth); 
-        hold all;
-        plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+            hold all; 
+            plot(x_now,y_now,'r','LineWidth',linewidth); 
+            hold all;
+            plot(x_now,y_now_opp,'r','LineWidth',linewidth);
+        end
     end
+    threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
+    %Make the new thresholded image
+    SAL1_2_Cu = imbinarize(mapSAL1_2_Cu.counts,threshold_Cu(1)); 
+    figure(Cu_thresh)
+    hold all; 
+    image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,SAL1_2_Cu,'CDataMapping','scaled');
+    axis('image'); 
 end
-threshold_Cu = data_Cu(index_Cu,8); %Choose the noise limit
-%Make the new thresholded image
-SAL1_2_Cu = imbinarize(mapSAL1_2_Cu.counts,threshold_Cu(1)); 
 %Do the same for Ni
 index_Ni = find(data_Ni(:,1)==scans(2));
 x_Ni = data_Ni(index_Ni,2);
@@ -280,10 +286,6 @@ end
 threshold_Ni = data_Ni(index_Ni,8); %Choose the noise limit
 %Make the new thresholded image
 SAL1_2_Ni = imbinarize(mapSAL1_2_Ni.counts,threshold_Ni(1)); 
-figure(Cu_thresh)
-hold all; 
-image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,SAL1_2_Cu,'CDataMapping','scaled');
-axis('image'); 
 figure(Ni_thresh);
 hold all; 
 image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,SAL1_2_Ni,'CDataMapping','scaled');

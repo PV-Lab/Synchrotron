@@ -32,7 +32,7 @@ SOFTWARE.
     %l_7150 = 50.238; %um
     
     %Cr edge attenuation lengths
-%     l_10000= 133.707; %um
+    l_10000= 133.707; %um
 %     l_5414 = 22.59; %um
     %Wafer thickness
     t = 170; %um
@@ -51,10 +51,16 @@ SOFTWARE.
     %Calculate information depth
 %     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_5414));
 
-    %This is for Cu
-    infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_8048));
+    %This is for Cu at 10 keV
+%     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_8048));
 
-    %This is for Ni
+    %This is for Ni at 10 keV
+    infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_7478));
+
+    %This is for Cu at 9 keV
+%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_8048));
+
+    %This is for Ni at 9 keV
 %     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_7478));
     
     
