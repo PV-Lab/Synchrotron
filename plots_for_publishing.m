@@ -333,7 +333,7 @@ image(mapSAH1_2_Cu.xValue,mapSAH1_2_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2]);%log
+caxis([0 2.5]);%log
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -370,7 +370,7 @@ image(mapSAH1_2_elastic.xValue,mapSAH1_2_elastic.yValue,mapSAH1_2_elastic.counts
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([1054 1572]);
+caxis([2500 5900]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -725,7 +725,7 @@ image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2.5]);
+caxis([0 3]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -754,7 +754,7 @@ image(mapPS1_elastic.xValue,mapPS1_elastic.yValue,mapPS1_elastic.counts,'CDataMa
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
-caxis([821 1479]);
+caxis([1750 5770]);
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
