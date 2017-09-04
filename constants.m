@@ -41,6 +41,7 @@ SOFTWARE.
     l_9000 = 98.1814; %um
     l_8048 = 70.8421; %Cu
     l_7478 = 57.2171; %Ni
+    l_4510 = 13.4670; %Ti
     
     theta0 = 5*pi/12; %Guess 75 degrees for GB angle
 
@@ -49,7 +50,7 @@ SOFTWARE.
     betaAngle   = 78*pi/180; %exiting angle  (75 degress)
     
     %Calculate information depth
-%     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_5414));
+%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_5414));
 
     %This is for Cu at 10 keV
 %     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_8048));
@@ -62,7 +63,12 @@ SOFTWARE.
 
     %This is for Ni at 9 keV
 %     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_7478));
+
+    %Fe at 9 keV
+%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_6404));
     
+    %Ti at 9 keV
+%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_4510));
     
         
 %     %beta-FeSi2 lattice parameters from Dusausoy et al.
