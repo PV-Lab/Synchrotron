@@ -42,33 +42,33 @@ cutOff = 99;
 cutoff_flag = 0;
 cutoff_min = 88;
 cutoff_max = 95;
-
+dir = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\XRF with Kapton\output'; 
 %SAL-1 (scans 189, 190)
-Cu_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0189.h5.txt'; 
-Cu_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0190.h5.txt'; 
-Ni_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0189.h5.txt'; 
-Ni_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0190.h5.txt'; 
-elastic_SAL1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0189.h5.txt'; 
-elastic_SAL1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0190.h5.txt'; 
+Cu_SAL1_1 = [dir '\ASCII_Cu_2idd_0189.h5.txt']; 
+Cu_SAL1_2 = [dir '\ASCII_Cu_2idd_0190.h5.txt']; 
+Ni_SAL1_1 = [dir '\ASCII_Ni_2idd_0189.h5.txt']; 
+Ni_SAL1_2 = [dir '\ASCII_Ni_2idd_0190.h5.txt']; 
+elastic_SAL1_1 = [dir '\ASCII_s_e_2idd_0189.h5.txt']; 
+elastic_SAL1_2 = [dir '\ASCII_s_e_2idd_0190.h5.txt']; 
 Cu_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0191.h5.txt';
 Ni_small_SAL1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0191.h5.txt';
 
 %SAH-1 (scans 204, 205)
-Cu_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0204.h5.txt'; 
-Cu_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0205.h5.txt'; 
-Ni_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0204.h5.txt'; 
-Ni_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0205.h5.txt'; 
-elastic_SAH1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0204.h5.txt'; 
-elastic_SAH1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0205.h5.txt'; 
+Cu_SAH1_1 = [dir '\ASCII_Cu_2idd_0204.h5.txt']; 
+Cu_SAH1_2 = [dir '\ASCII_Cu_2idd_0205.h5.txt']; 
+Ni_SAH1_1 = [dir '\ASCII_Ni_2idd_0204.h5.txt']; 
+Ni_SAH1_2 = [dir '\ASCII_Ni_2idd_0205.h5.txt']; 
+elastic_SAH1_1 = [dir '\ASCII_s_e_2idd_0204.h5.txt']; 
+elastic_SAH1_2 = [dir '\ASCII_s_e_2idd_0205.h5.txt']; 
 Cu_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Cu_2idd_0206.h5.txt';
 Ni_small_SAH1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c3\fitted\no filter\output\ASCII_Ni_2idd_0206.h5.txt';
 
 %S-1 as-grown (2016c2 scans 206 for Cu/Ni, scan 213 for Ti)
-Cu_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\new analysis 2016c2 as-grown\output\ASCII_Cu_2idd_0206.h5.txt'; 
+Cu_S1_1 = [dir '\ASCII_Cu_2idd_0206.h5.txt']; 
 Cu_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Cu_2idd_0213.h5.txt'; 
-Ni_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\new analysis 2016c2 as-grown\output\ASCII_Ni_2idd_0206.h5.txt'; 
+Ni_S1_1 = [dir '\ASCII_Ni_2idd_0206.h5.txt']; 
 Ni_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0213.h5.txt'; 
-elastic_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\new analysis 2016c2 as-grown\output\ASCII_s_e_2idd_0206.h5.txt'; 
+elastic_S1_1 = [dir '\ASCII_s_e_2idd_0206.h5.txt']; 
 elastic_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_s_e_2idd_0213.h5.txt'; 
 Ti_S1_1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0206.h5.txt'; 
 Ti_S1_2 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ti_2idd_0213.h5.txt'; 
@@ -76,9 +76,9 @@ Cu_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c
 Ni_small_S1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\2-ID-D 2016c2\MIT.16c2.img.dat\output\ASCII_Ni_2idd_0207.h5.txt';
 
 %Phosphorous diffusion PS1 (2016c3 scan 102)
-Cu_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Cu_2idd_0102.h5.txt'; 
-Ni_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_Ni_2idd_0102.h5.txt'; 
-elastic_PS1 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\quantification from Barry\output\ASCII_s_e_2idd_0102.h5.txt'; 
+Cu_PS1 = [dir '\ASCII_Cu_2idd_0102.h5.txt']; 
+Ni_PS1 = [dir '\ASCII_Ni_2idd_0102.h5.txt']; 
+elastic_PS1 = [dir '\ASCII_s_e_2idd_0102.h5.txt']; 
 
 %26-ID-C data
 Cu_26 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\26-ID-C 2016c3\output\ASCII_Cu_26idbSOFT_0153.h5.txt';
@@ -142,9 +142,9 @@ image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-% caxis([0 2]); %log
+caxis([0 2]); %log
 %trying to make backgrounds comparable
-caxis([0.75*8.37e-1 max(max(logged))]); 
+% caxis([0.75*8.37e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off; 
@@ -163,9 +163,9 @@ image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-% caxis([0 3]);%log
+caxis([0 3]);%log
 %trying to make backgrounds comparable
-caxis([0.75*6.79e-1 max(max(logged))]); 
+% caxis([0.75*6.79e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -337,9 +337,9 @@ image(mapSAH1_2_Cu.xValue,mapSAH1_2_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-% caxis([0 2.5]);%log
+caxis([0 2.5]);%log
 %trying to make backgrounds comparable
-caxis([0.75*8.87e-1 max(max(logged))]); 
+% caxis([0.75*8.87e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -358,9 +358,9 @@ image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-% caxis([0 3]);%log
+caxis([0 3]);%log
 %trying to make backgrounds comparable
-caxis([0.75*6.99e-1 max(max(logged))]); 
+% caxis([0.75*6.99e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -528,9 +528,9 @@ image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.75]);
-% caxis([1 7]);%log
+caxis([1 7]);%log
 %trying to make backgrounds comparable
-caxis([0.75*1.39 max(max(logged))]); 
+% caxis([0.75*1.39 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -544,9 +544,9 @@ image(mapS1_2_Cu.xValue,mapS1_2_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.04]);
-% caxis([0 max(max(logged))]);
+caxis([0 max(max(logged))]);
 %trying to make backgrounds comparable
-caxis([0.75*1.39 max(max(logged))]); 
+% caxis([0.75*1.39 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -563,9 +563,9 @@ image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.75]);
-% caxis([1 6]);%log
+caxis([1 6]);%log
 %trying to make backgrounds comparable
-caxis([0.75*1.21 max(max(logged))]); 
+% caxis([0.75*1.21 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -579,9 +579,9 @@ image(mapS1_2_Ni.xValue,mapS1_2_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.04]);
-% caxis([0 max(max(logged))]);%log
+caxis([0 max(max(logged))]);%log
 %trying to make backgrounds comparable
-caxis([0.75*1.21 max(max(logged))]); 
+% caxis([0.75*1.21 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -741,9 +741,9 @@ image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-% caxis([0 3]);
+caxis([0 3]);
 %trying to make backgrounds comparable
-caxis([0.75*1.07 max(max(logged))]); 
+% caxis([0.75*1.07 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
@@ -758,9 +758,9 @@ image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-% caxis([0.5 2.5]);%log
+caxis([0.5 2.5]);%log
 %trying to make backgrounds comparable
-caxis([0.75*9.83e-1 max(max(logged))]); 
+% caxis([0.75*9.83e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
 set(gca, 'YTick', []);
 axis off;
