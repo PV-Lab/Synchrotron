@@ -42,6 +42,7 @@ SOFTWARE.
     l_8048 = 70.8421; %Cu
     l_7478 = 57.2171; %Ni
     l_4510 = 13.4670; %Ti
+    l_6404 = 36.526; %Fe
     
     theta0 = 5*pi/12; %Guess 75 degrees for GB angle
 
@@ -56,10 +57,10 @@ SOFTWARE.
 %     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_8048));
 
     %This is for Ni at 10 keV
-%     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_7478));
+    infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_7478));
 
     %This is for Cu at 9 keV
-    infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_8048));
+%     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_8048));
 
     %This is for Ni at 9 keV
 %     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_7478));
@@ -69,7 +70,9 @@ SOFTWARE.
     
     %Ti at 9 keV
 %     infoD = 1/(1/(cos(alphaAngle)*l_9000)+1/(cos(betaAngle)*l_4510));
-    
+
+    %Fe at 10 keV
+%     infoD = 1/(1/(cos(alphaAngle)*l_10000)+1/(cos(betaAngle)*l_6404));
         
 %     %beta-FeSi2 lattice parameters from Dusausoy et al.
 % 
@@ -108,8 +111,9 @@ SOFTWARE.
     
     V_CuSi2_unitcell = (Cu_a^2)*Cu_c*sin(60*2*pi/360)/Cu_Z; %cm^3, hexagonal
     
-    wtCu = 63.546; %g/mol
-%     wtCu = 58.6934; %g/mol, this is actually Ni
+%     wtCu = 55.845; %g/mol, Fe
+%     wtCu = 63.546; %g/mol, Cu
+    wtCu = 58.6934; %g/mol, this is actually Ni
     wtSi = 28.0855; %g/mol
     wtCuSi2 = wtCu+(2*wtSi); %g/mol
     

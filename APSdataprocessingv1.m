@@ -37,9 +37,9 @@ SOFTWARE.
 %%%%
 
 %% Choose which samples to process and which channels to load
-    sampleInfoSERISCuNi;
+    sampleInfoHPMCvConv;
 
-    channelsToLoad = {'Cu','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
+    channelsToLoad = {'Ni','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
     
     %%
 if ~exist('fromMaps','var')
@@ -62,7 +62,7 @@ end
 %Could run this outer loop for multiple cutoff values to assess what the
 %best cutoff value may be. Adjust the value/structure of w in order to do
 %this. 
-for w = 4  %3 for HiT, 3.5 for I2Eb, 3bkgdSubt for I2ELTA, 3.5 for Cr (for comparison purposes only - otherwise 4.05 seems to be a good value)
+for w = 3.5  %3 for HiT, 3.5 for I2Eb, 3bkgdSubt for I2ELTA, 3.5 for Cr (for comparison purposes only - otherwise 4.05 seems to be a good value)
 for u = 1:q
     for v = 1:tt
         
@@ -130,7 +130,7 @@ for u = 1:q
         %points
         %subtracted - subtracts the noiseMean from the data
         
-    quantOptions = struct('channel','Cu','scaling','off','background',bkgdAnalysis,'fitorder','3','manualgbline','n','plots','on','plotScale','linear') ;
+    quantOptions = struct('channel','Ni','scaling','off','background',bkgdAnalysis,'fitorder','3','manualgbline','n','plots','on','plotScale','linear') ;
     %%%%%%%%%%%%%%%%   
             
             quant.(sampleName) = pcpDistAnalysisv1(fitted.(sampleName), quantOptions);
