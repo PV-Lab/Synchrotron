@@ -52,7 +52,7 @@ global pon xLocation yLocation
 
 % define defaults at the beginning of the code so that you don't need to scroll
 % way down in case you want to change something or if the help is incomplete
-options = struct('channel','Ni','scaling','on','background','removed','fitorder','1','manualgbline','n','plots','on','plotScale','linear'); %,'secondparameter',magic(3));
+options = struct('channel','Fe','scaling','on','background','removed','fitorder','1','manualgbline','n','plots','on','plotScale','linear'); %,'secondparameter',magic(3));
 
 %scaling - on/off toggles the scaling of cts with depth from GB
 %backgrond - 
@@ -98,9 +98,9 @@ end
 elasticCounts = map.s_e.counts;
 
 % AEM choose the right element channel
-if strcmp(options.channel,'Ni')
-    map = map.Ni;
-elseif strcmp(options.channel,'only Ni') %if only Cr has been imported and fitted
+if strcmp(options.channel,'Fe')
+    map = map.Fe;
+elseif strcmp(options.channel,'only Fe') %if only Cr has been imported and fitted
     map = map;
 else
     map = map.(options.channel);

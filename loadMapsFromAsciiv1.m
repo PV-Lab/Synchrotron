@@ -24,8 +24,10 @@ SOFTWARE.
 %}
 
 %% loadMapsFromAsciiv1.m
-
-startFileName = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c1 Barry quantified\output\ASCII_';
+%2017c1
+% startFileName = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c1 Barry quantified\output\ASCII_';
+%2017c2
+startFileName = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c2 Barry quantified\output\ASCII_';
 endFileName   = '.h5.txt'; % for quantified
 
 %endFileName   = '.img.dat.txt'; % for quantified
