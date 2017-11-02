@@ -39,7 +39,7 @@ SOFTWARE.
 %% Choose which samples to process and which channels to load
     sampleInfoHPMCvConv;
 
-    channelsToLoad = {'Fe','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
+    channelsToLoad = {'Cu','s_e'}; %Always need s_e for GBanalysis.  These have to have been outputted as ASCIIs
     
     %%
 if ~exist('fromMaps','var')
@@ -130,7 +130,7 @@ for u = 1:q
         %points
         %subtracted - subtracts the noiseMean from the data
         
-    quantOptions = struct('channel','Fe','scaling','off','background',bkgdAnalysis,'fitorder','3','manualgbline','n','plots','on','plotScale','linear') ;
+    quantOptions = struct('channel','Cu','scaling','off','background',bkgdAnalysis,'fitorder','3','manualgbline','n','plots','on','plotScale','linear') ;
     %%%%%%%%%%%%%%%%   
             
             quant.(sampleName) = pcpDistAnalysisv1(fitted.(sampleName), quantOptions);
