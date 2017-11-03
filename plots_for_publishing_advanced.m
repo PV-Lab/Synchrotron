@@ -23,11 +23,11 @@ SOFTWARE.
 %}
 clear all; close all; clc; 
 %Where are the particle summaries located
-filename_summary = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data'; 
-filename_summary = [filename_summary '\20171011_scan_particle_summary.xlsx'];
-%Get the grain boundary length
-[num,txt] = xlsread(filename_summary,'scan summary'); 
-GB_length = [num(2:end,3) num(2:end,22)]; 
+filename_summary = 'C:\Users\Mallory Jensen\Documents\Synchrotron\NTNU'; 
+filename_summary = [filename_summary '\20171103_scan_summary.xlsx'];
+% %Get the grain boundary length
+% [num,txt] = xlsread(filename_summary,'scan summary'); 
+% GB_length = [num(2:end,3) num(2:end,22)]; 
 
 %Do you want to circle the particles?
 circle_parts = 'N'; 
@@ -35,73 +35,46 @@ radius = 0.00075;
 linewidth = 4; 
 
 %Do you want to calculate line density of particles?
-density_calc = 'Y'; 
+density_calc = 'N'; 
 
 %Where are the directories we want to look
-dir_2017c1 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c1 Barry quantified\output'; 
-dir_2017c2 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c2 Barry quantified\output'; 
-dir_2017c3 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c3 MIT quantified\output';
+dir_2016c3 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\NTNU\2016c3\output'; 
+dir_2017c1 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\NTNU\2016c3\output'; 
 
-all_dir = {dir_2017c1,dir_2017c2,dir_2017c3}; 
-% all_dir = {dir_2017c3}; 
+all_dir = {dir_2016c3,dir_2017c1}; 
 
 %What are the samples within those directories
-% samp_2017c1 = {{'0089' '0091'},{'0109' '0115'},{'0127'}};%stitched
-% name_2017c1 = {'HPMC RA 18.3','conv RA 18.6','HPMC sigma9 37.9'};%stitched 
-% samp_2017c2 = {{'0124'},{'0129','0130','0131'},{'0138'},{'0146','0149','0156'},...
-%     {'0160','0161'},{'0170','0171'},{'0181'},{'0189'},{'0194'}};%stitched
-% name_2017c2 = {'HPMC RA 50','HPMC sigma9 39.5','HPMC RA 16.8','HPMC sigma3 59.7',...
-%     'conv sigma27','conv RA 50','conv sigma9 39.1','conv sigma 3','conv RA 23.2'}; %stitched
-samp_2017c1 = {{'0089'},{'0091'},{'0109'},{'0115'},{'0127'}};
-name_2017c1 = {'HPMC RA 18.3-1','HPMC RA 18.3-2',...
-    'conv RA 18.6-1','conv RA 18.6-2','HPMC sigma9 37.9'}; 
-cax_2017c1 = {{[0.0042 0.0248],[0.002 0.153],[0.001 0.377]},...
-    {[0.0068 0.0246],[0.0021 0.0688],[0.002 0.156]},...
-    {[0.0053 0.0255],[0.0001 5.38],[0.0001 0.553]},...
-    {[0.0062 0.0230],[0.0001 1.44],[0.0001 0.170]},...
-    {[],[],[]}};
-samp_2017c2 = {{'0124'},{'0129'},{'0130'},{'0131'},{'0138'},{'0146'},{'0149'},{'0156'},...
-    {'0160'},{'0161'},{'0170'},{'0171'},{'0181'},{'0189'},{'0194'}};
-name_2017c2 = {'HPMC RA 50','HPMC sigma9 39.5-1','HPMC sigma9 39.5-2',...
-    'HPMC sigma9 39.5-3','HPMC RA 16.8','HPMC sigma3 59.7-1',...
-    'HPMC sigma3 59.7-2','HPMC sigma3 59.7-3','conv sigma27-1',...
-    'conv sigma27-2','conv RA 50-1','conv RA 50-2','conv sigma9 39.1',...
-    'conv sigma 3','conv RA 23.2'};
-cax_2017c2 = {{[x],[],[]},{[],[],[]},{[],[],[]},{[],[],[]},...
-    {[x],[],[]},{[],[],[]},{[],[],[]},{[],[],[]},{[],[],[]},...
-    {[],[],[]},{[x],[],[]},{[x],[],[]},...
-    {[],[],[]},{[],[],[]},{[x],[],[]}};
-samp_2017c3 = {{'0034'},{'0039'},{'0051'},{'0025'},{'0047'},{'0043'}};
-name_2017c3 = {'HPMC RA 37-1','HPMC RA 37-2','conv RA 37-1',...
-    'conv RA 37-2','conv sigma9 40-1','conv sigma9 40-2'}; 
-cax_2017c3 = {{[x],[],[]},{[x],[],[]},{[x],[],[]},...
-    {[x],[],[]},{[],[],[]},{[],[],[]}};
+samp_2016c3 = {{'0148'},{'0149'},{'0152'}};
+name_2016c3 = {'138 ROI 2','138 ROI 1 - 1','138 ROI 1 - 2'}; 
+cax_2016c3 = {{[],[],[],[],[]},{[],[],[],[],[]},{[],[],[],[],[]},{[],[],[],[],[]}};
+samp_2017c1 = {{'0032'},{'0038'},{'0039'}};
+name_2017c1 = {'137 ROI 1','137 ROI 2 - 1','137 ROI 2 - 2'};
+cax_2017c1 = {{[],[],[],[],[]},{[],[],[],[],[]},{[],[],[],[],[]},{[],[],[],[],[]}};
+
 
 %How many metals do we have
-metals = {'s_e','Si','Fe','Cu','Ni'}; 
+metals = {'s_e','Si','Fe','Cu','Ni','Co','Ca'}; 
 %Let's read the particle data'
-for i = 1:length(metals)
-    if strcmp(metals{i},'s_e')==0 && strcmp(metals{i},'Si')==0
-        [num,txt] = xlsread(filename_summary,metals{i}); 
-        %pick out the relevant data
-        scans = num(:,1); 
-        x = num(:,7); 
-        y = num(:,8); 
-        atoms = num(:,9); 
-        particles.(metals{i})=struct('scans',scans,'x',x,'y',y,'Natoms',atoms); 
-    end
-end
+% for i = 1:length(metals)
+%     if strcmp(metals{i},'s_e')==0 && strcmp(metals{i},'Si')==0
+%         [num,txt] = xlsread(filename_summary,metals{i}); 
+%         %pick out the relevant data
+%         scans = num(:,1); 
+%         x = num(:,9); 
+%         y = num(:,10); 
+%         atoms = num(:,9); 
+%         particles.(metals{i})=struct('scans',scans,'x',x,'y',y,'Natoms',atoms); 
+%     end
+% end
 
 cutOff = 99;
 cutoff_flag = 0;
 cutoff_min = 88;
 cutoff_max = 95;
 
-all_samp = {samp_2017c1,samp_2017c2,samp_2017c3}; 
-all_names = {name_2017c1,name_2017c2,name_2017c3}; 
-all_cax = {cax_2017c1,cax_2017c2,cax_2017c3};
-% all_samp = {samp_2017c3}; 
-% all_names = {name_2017c3}; 
+all_samp = {samp_2016c3,samp_2017c1}; 
+all_names = {name_2016c3,name_2017c1}; 
+all_cax = {cax_2016c3,cax_2017c1};
 
 if strcmp(density_calc,'Y')==1
     %Prep for gathering the line density information
@@ -142,7 +115,7 @@ for i = 1:no_runs
                    processAsciiFile(filename,cutoff_flag,cutoff_min,cutoff_max); 
                %let's take the log of these counts
                easy_maps = maps.(genvarname([metals{k} '_' scans_thisrun{m}])); 
-               logged = log(easy_maps.counts.*1e3); 
+               logged = log10(easy_maps.counts.*1e3); 
                image(easy_maps.xValue,easy_maps.yValue,logged,'CDataMapping','scaled'); 
                hold all; 
                if strcmp(circle_parts,'Y')==1 && strcmp(metals{k},'s_e')==0 &&...
@@ -192,13 +165,14 @@ for i = 1:no_runs
            set(gca, 'YTick', []);
            axis off;
            colorbar; 
-           if isempty(cax_thissample{k})==0
-               caxis(log(cax_thissample{k})}; 
-           end
+%            if isempty(cax_thissample{k})==0
+%                caxis(log(cax_thissample{k})); 
+%            end
            %save the figure
            fig = gcf; 
            set(fig,'PaperPositionMode','auto');
-           print(fig,'-dpng','-r0',[dir_thisrun '\' names_thisrun{j} '_' metals{k} '.png']);    
+           print(fig,'-dpng','-r0',[dir_thisrun '\' names_thisrun{j} '_' metals{k} '.png']); 
+           savefig(fig,[dir_thisrun '\' names_thisrun{j} '_' metals{k} '.fig']);
        end
        if strcmp(density_calc,'Y')==1
            density_storerun{j} = density; 
