@@ -40,8 +40,10 @@ density_calc = 'Y';
 %Where are the directories we want to look
 dir_2017c1 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c1 Barry quantified\output'; 
 dir_2017c2 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c2 Barry quantified\output'; 
+dir_2017c3 = 'C:\Users\Mallory Jensen\Documents\Synchrotron\HPMC vs. mc-Si\Synchrotron data\2017c3 MIT quantified\output';
 
-all_dir = {dir_2017c1,dir_2017c2}; 
+all_dir = {dir_2017c1,dir_2017c2,dir_2017c3}; 
+% all_dir = {dir_2017c3}; 
 
 %What are the samples within those directories
 % samp_2017c1 = {{'0089' '0091'},{'0109' '0115'},{'0127'}};%stitched
@@ -53,6 +55,11 @@ all_dir = {dir_2017c1,dir_2017c2};
 samp_2017c1 = {{'0089'},{'0091'},{'0109'},{'0115'},{'0127'}};
 name_2017c1 = {'HPMC RA 18.3-1','HPMC RA 18.3-2',...
     'conv RA 18.6-1','conv RA 18.6-2','HPMC sigma9 37.9'}; 
+cax_2017c1 = {{[0.0042 0.0248],[0.002 0.153],[0.001 0.377]},...
+    {[0.0068 0.0246],[0.0021 0.0688],[0.002 0.156]},...
+    {[0.0053 0.0255],[0.0001 5.38],[0.0001 0.553]},...
+    {[0.0062 0.0230],[0.0001 1.44],[0.0001 0.170]},...
+    {[],[],[]}};
 samp_2017c2 = {{'0124'},{'0129'},{'0130'},{'0131'},{'0138'},{'0146'},{'0149'},{'0156'},...
     {'0160'},{'0161'},{'0170'},{'0171'},{'0181'},{'0189'},{'0194'}};
 name_2017c2 = {'HPMC RA 50','HPMC sigma9 39.5-1','HPMC sigma9 39.5-2',...
@@ -60,6 +67,15 @@ name_2017c2 = {'HPMC RA 50','HPMC sigma9 39.5-1','HPMC sigma9 39.5-2',...
     'HPMC sigma3 59.7-2','HPMC sigma3 59.7-3','conv sigma27-1',...
     'conv sigma27-2','conv RA 50-1','conv RA 50-2','conv sigma9 39.1',...
     'conv sigma 3','conv RA 23.2'};
+cax_2017c2 = {{[x],[],[]},{[],[],[]},{[],[],[]},{[],[],[]},...
+    {[x],[],[]},{[],[],[]},{[],[],[]},{[],[],[]},{[],[],[]},...
+    {[],[],[]},{[x],[],[]},{[x],[],[]},...
+    {[],[],[]},{[],[],[]},{[x],[],[]}};
+samp_2017c3 = {{'0034'},{'0039'},{'0051'},{'0025'},{'0047'},{'0043'}};
+name_2017c3 = {'HPMC RA 37-1','HPMC RA 37-2','conv RA 37-1',...
+    'conv RA 37-2','conv sigma9 40-1','conv sigma9 40-2'}; 
+cax_2017c3 = {{[x],[],[]},{[x],[],[]},{[x],[],[]},...
+    {[x],[],[]},{[],[],[]},{[],[],[]}};
 
 %How many metals do we have
 metals = {'s_e','Si','Fe','Cu','Ni'}; 
@@ -81,8 +97,11 @@ cutoff_flag = 0;
 cutoff_min = 88;
 cutoff_max = 95;
 
-all_samp = {samp_2017c1,samp_2017c2}; 
-all_names = {name_2017c1,name_2017c2}; 
+all_samp = {samp_2017c1,samp_2017c2,samp_2017c3}; 
+all_names = {name_2017c1,name_2017c2,name_2017c3}; 
+all_cax = {cax_2017c1,cax_2017c2,cax_2017c3};
+% all_samp = {samp_2017c3}; 
+% all_names = {name_2017c3}; 
 
 if strcmp(density_calc,'Y')==1
     %Prep for gathering the line density information
@@ -102,12 +121,14 @@ for i = 1:no_runs
     names_thisrun = all_names{i}; 
     no_samp = length(samples_thisrun); 
     density_store_run = cell(no_samp,1); 
+    cax_thisrun = all_cax{i}; 
     for j = 1:no_samp
        scans_thisrun = samples_thisrun{j}; 
        no_scans = length(scans_thisrun); 
+       cax_thissample = cax_thisrun{j}; 
        if strcmp(density_calc,'Y')==1
            %We want to look at the line density
-           density = zeros(length(size_bins),length(metals)-2); 
+           density = zeros(length(size_bins)-1,length(metals)-2); 
        end
        for k = 1:length(metals)
            %We'll make one figure together for these scans
@@ -121,8 +142,8 @@ for i = 1:no_runs
                    processAsciiFile(filename,cutoff_flag,cutoff_min,cutoff_max); 
                %let's take the log of these counts
                easy_maps = maps.(genvarname([metals{k} '_' scans_thisrun{m}])); 
-%                logged = log(easy_maps.counts.*1e3); 
-               image(easy_maps.xValue,easy_maps.yValue,easy_maps.counts,'CDataMapping','scaled'); 
+               logged = log(easy_maps.counts.*1e3); 
+               image(easy_maps.xValue,easy_maps.yValue,logged,'CDataMapping','scaled'); 
                hold all; 
                if strcmp(circle_parts,'Y')==1 && strcmp(metals{k},'s_e')==0 &&...
                        strcmp(metals{k},'Si')==0
@@ -171,6 +192,9 @@ for i = 1:no_runs
            set(gca, 'YTick', []);
            axis off;
            colorbar; 
+           if isempty(cax_thissample{k})==0
+               caxis(log(cax_thissample{k})}; 
+           end
            %save the figure
            fig = gcf; 
            set(fig,'PaperPositionMode','auto');
