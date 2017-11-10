@@ -142,7 +142,7 @@ image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2]); %log
+caxis([0 2.5]); %log
 %trying to make backgrounds comparable
 % caxis([0.75*8.37e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -163,7 +163,7 @@ image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 3]);%log
+caxis([0 2.5]);%log
 %trying to make backgrounds comparable
 % caxis([0.75*6.79e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -358,7 +358,7 @@ image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 3]);%log
+caxis([0 2.5]);%log
 %trying to make backgrounds comparable
 % caxis([0.75*6.99e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -528,7 +528,7 @@ image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.75]);
-caxis([1 7]);%log
+caxis([1 6]);%log
 %trying to make backgrounds comparable
 % caxis([0.75*1.39 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -741,7 +741,7 @@ image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 3]);
+caxis([0 2.5]);
 %trying to make backgrounds comparable
 % caxis([0.75*1.07 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -758,7 +758,7 @@ image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0.5 2.5]);%log
+caxis([0 2.5]);%log
 %trying to make backgrounds comparable
 % caxis([0.75*9.83e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
