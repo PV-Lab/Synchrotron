@@ -130,19 +130,20 @@ Ni_26 = 'C:\Users\Mallory Jensen\Documents\LeTID\XRF\26-ID-C 2016c3\output\ASCII
 %% SAL-1
 
 %Cu first
-logged = log(mapSAL1_1_Cu.counts.*1e3);
+logged = log10(mapSAL1_1_Cu.counts.*1e3);
 Cu=figure;
 image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,logged,'CDataMapping','scaled');
 % image(mapSAL1_1_Cu.xValue,mapSAL1_1_Cu.yValue,mapSAL1_1_Cu.counts,'CDataMapping','scaled');
 hold all; 
-logged = log(mapSAL1_2_Cu.counts.*1e3);
+logged = log10(mapSAL1_2_Cu.counts.*1e3);
 image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,logged,'CDataMapping','scaled');
 % image(mapSAL1_2_Cu.xValue,mapSAL1_2_Cu.yValue,mapSAL1_2_Cu.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2.5]); %log
+% caxis([0 2.5]); %log
+caxis([0 1.1]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*8.37e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -151,19 +152,20 @@ axis off;
 % colorbar;
 
 %Ni next
-logged = log(mapSAL1_1_Ni.counts.*1e3);
+logged = log10(mapSAL1_1_Ni.counts.*1e3);
 Ni=figure;
 image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,logged,'CDataMapping','scaled');
 % image(mapSAL1_1_Ni.xValue,mapSAL1_1_Ni.yValue,mapSAL1_1_Ni.counts,'CDataMapping','scaled');
 hold all; 
-logged = log(mapSAL1_2_Ni.counts.*1e3);
+logged = log10(mapSAL1_2_Ni.counts.*1e3);
 image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,logged,'CDataMapping','scaled');
 % image(mapSAL1_2_Ni.xValue,mapSAL1_2_Ni.yValue,mapSAL1_2_Ni.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2.5]);%log
+% caxis([0 2.5]);%log
+caxis([0 1.1]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*6.79e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -172,11 +174,11 @@ axis off;
 % colorbar;
 
 %Elastic next
-logged = log(mapSAL1_1_elastic.counts);
+logged = log10(mapSAL1_1_elastic.counts);
 hFig=figure;
 image(mapSAL1_1_elastic.xValue,mapSAL1_1_elastic.yValue,mapSAL1_1_elastic.counts,'CDataMapping','scaled');
 hold all; 
-logged = log(mapSAL1_2_elastic.counts);
+logged = log10(mapSAL1_2_elastic.counts);
 image(mapSAL1_2_elastic.xValue,mapSAL1_2_elastic.yValue,mapSAL1_2_elastic.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
@@ -325,19 +327,20 @@ print('-dpng','-r0','SAL-1_Ni_small');
 %% SAH-1
 
 %Cu first
-logged = log(mapSAH1_1_Cu.counts.*1e3);
+logged = log10(mapSAH1_1_Cu.counts.*1e3);
 Cu=figure;
 image(mapSAH1_1_Cu.xValue,mapSAH1_1_Cu.yValue,logged,'CDataMapping','scaled');
 % image(mapSAH1_1_Cu.xValue,mapSAH1_1_Cu.yValue,mapSAH1_1_Cu.counts,'CDataMapping','scaled');
 hold all; 
-logged = log(mapSAH1_2_Cu.counts.*1e3);
+logged = log10(mapSAH1_2_Cu.counts.*1e3);
 image(mapSAH1_2_Cu.xValue,mapSAH1_2_Cu.yValue,logged,'CDataMapping','scaled');
 % image(mapSAH1_2_Cu.xValue,mapSAH1_2_Cu.yValue,mapSAH1_2_Cu.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2.5]);%log
+% caxis([0 2.5]);%log
+caxis([0 1.1]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*8.87e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -346,19 +349,20 @@ axis off;
 % colorbar;
 
 %Ni next
-logged = log(mapSAH1_1_Ni.counts.*1e3);
+logged = log10(mapSAH1_1_Ni.counts.*1e3);
 Ni=figure;
 image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,logged,'CDataMapping','scaled');
 % image(mapSAH1_1_Ni.xValue,mapSAH1_1_Ni.yValue,mapSAH1_1_Ni.counts,'CDataMapping','scaled');
 hold all; 
-logged = log(mapSAH1_2_Ni.counts.*1e3);
+logged = log10(mapSAH1_2_Ni.counts.*1e3);
 image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,logged,'CDataMapping','scaled');
 % image(mapSAH1_2_Ni.xValue,mapSAH1_2_Ni.yValue,mapSAH1_2_Ni.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2.5]);%log
+% caxis([0 2.5]);%log
+caxis([0 1.1]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*6.99e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -520,7 +524,7 @@ print('-dpng','-r0','SAH-1_Ni_small');
 %% S1 2016c2 - these we plot separately because they are in different locations
 
 %Cu first
-logged = log(mapS1_1_Cu.counts.*1e3);
+logged = log10(mapS1_1_Cu.counts.*1e3);
 Cu=figure;
 image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,logged,'CDataMapping','scaled');
 % image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,mapS1_1_Cu.counts,'CDataMapping','scaled');
@@ -528,7 +532,8 @@ image(mapS1_1_Cu.xValue,mapS1_1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.75]);
-caxis([1 6]);%log
+% caxis([1 6]);%log
+caxis([0.5 2.6]);%log10
 %trying to make backgrounds comparable
 % caxis([0.75*1.39 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -537,7 +542,7 @@ axis off;
 % colorbar; 
 
 hFig=figure; 
-logged = log(mapS1_2_Cu.counts.*1e3);
+logged = log10(mapS1_2_Cu.counts.*1e3);
 image(mapS1_2_Cu.xValue,mapS1_2_Cu.yValue,logged,'CDataMapping','scaled');
 % image(mapS1_2_Cu.xValue,mapS1_2_Cu.yValue,mapS1_2_Cu.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
@@ -555,7 +560,7 @@ axis off;
 print('-dpng','-r0','S-1_2_Cu');
 
 %Ni next
-logged = log(mapS1_1_Ni.counts.*1e3);
+logged = log10(mapS1_1_Ni.counts.*1e3);
 Ni=figure;
 image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,logged,'CDataMapping','scaled');
 % image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,mapS1_1_Ni.counts,'CDataMapping','scaled');
@@ -563,7 +568,8 @@ image(mapS1_1_Ni.xValue,mapS1_1_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.75]);
-caxis([1 6]);%log
+% caxis([1 6]);%log
+caxis([0.5 2.6]);%log10
 %trying to make backgrounds comparable
 % caxis([0.75*1.21 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -572,7 +578,7 @@ axis off;
 % colorbar; 
 
 hFig = figure; 
-logged = log(mapS1_2_Ni.counts.*1e3);
+logged = log10(mapS1_2_Ni.counts.*1e3);
 image(mapS1_2_Ni.xValue,mapS1_2_Ni.yValue,logged,'CDataMapping','scaled');
 % image(mapS1_2_Ni.xValue,mapS1_2_Ni.yValue,mapS1_2_Ni.counts,'CDataMapping','scaled');
 % colormap(flipud(gray));
@@ -733,7 +739,7 @@ print('-dpng','-r0','S1_Ni_small');
 %% PS1
 
 %Cu first
-logged = log(mapPS1_Cu.counts.*1e3);
+logged = log10(mapPS1_Cu.counts.*1e3);
 Cu=figure;
 image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
 % image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,mapPS1_Cu.counts,'CDataMapping','scaled');
@@ -741,7 +747,8 @@ image(mapPS1_Cu.xValue,mapPS1_Cu.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2.5]);
+% caxis([0 2.5]);
+caxis([0 1.1]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*1.07 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -750,7 +757,7 @@ axis off;
 % colorbar; 
 
 %Ni next
-logged = log(mapPS1_Ni.counts.*1e3);
+logged = log10(mapPS1_Ni.counts.*1e3);
 Ni=figure;
 image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,logged,'CDataMapping','scaled');
 % image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,mapPS1_Ni.counts,'CDataMapping','scaled');
@@ -758,7 +765,8 @@ image(mapPS1_Ni.xValue,mapPS1_Ni.yValue,logged,'CDataMapping','scaled');
 colormap(parula);
 axis image; 
 % caxis([0 0.01]);
-caxis([0 2.5]);%log
+% caxis([0 2.5]);%log
+caxis([0 1.1]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*9.83e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
