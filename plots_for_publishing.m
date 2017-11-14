@@ -143,7 +143,7 @@ colormap(parula);
 axis image; 
 % caxis([0 0.01]);
 % caxis([0 2.5]); %log
-caxis([0 1.1]); %log10
+caxis([0 1.0]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*8.37e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -165,7 +165,7 @@ colormap(parula);
 axis image; 
 % caxis([0 0.01]);
 % caxis([0 2.5]);%log
-caxis([0 1.1]); %log10
+caxis([0 1.0]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*6.79e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -340,7 +340,7 @@ colormap(parula);
 axis image; 
 % caxis([0 0.01]);
 % caxis([0 2.5]);%log
-caxis([0 1.1]); %log10
+caxis([0 1.0]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*8.87e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -362,7 +362,7 @@ colormap(parula);
 axis image; 
 % caxis([0 0.01]);
 % caxis([0 2.5]);%log
-caxis([0 1.1]); %log10
+caxis([0 1.0]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*6.99e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -748,7 +748,7 @@ colormap(parula);
 axis image; 
 % caxis([0 0.01]);
 % caxis([0 2.5]);
-caxis([0 1.1]); %log10
+caxis([0 1.0]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*1.07 max(max(logged))]); 
 set(gca, 'XTick', []);
@@ -766,7 +766,7 @@ colormap(parula);
 axis image; 
 % caxis([0 0.01]);
 % caxis([0 2.5]);%log
-caxis([0 1.1]); %log10
+caxis([0 1.0]); %log10
 %trying to make backgrounds comparable
 % caxis([0.75*9.83e-1 max(max(logged))]); 
 set(gca, 'XTick', []);
